@@ -1,4 +1,4 @@
-# Super Metroid: Redesign Rando
+# Super Metroid: Redesign Randomizer
 
 Makes a randomized Super Metroid: Redesign ROM to play. 
 
