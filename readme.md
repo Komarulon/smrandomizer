@@ -2,11 +2,13 @@
 
 Makes a randomized Super Metroid: Redesign ROM to play. 
 
+Latest Release can be found here: https://github.com/Komarulon/smrandomizer/releases/
+
 YOU CAN SOFTLOCK. MAKE LOTS OF SAVES.
 
 I recommend using a map! Even better, an item tracker. With EmoTracker: https://emotracker.net/ , you can download the tracker I made here: https://github.com/Komarulon/SuperMetroidRedesignRandomizerEmoTracker 
 
-In theory, this should be exactly the same as the "current" lost version of the randomizer, however it has yet to be tested to completion (the "current lost version HAS been tested to completion).  
+In theory, this should be exactly the same as the "current" lost version of the randomizer, however it has yet to be tested to completion (the "current" lost version HAS been tested to completion).  
 
 Changes I know about:
 - You start with wall-jump boots
