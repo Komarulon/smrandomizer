@@ -15,7 +15,6 @@ namespace SuperMetroidRandomizer.Rom
         Brinstar,
         Norfair,
         LowerNorfair,
-        WreckedShip,
         Maridia,
     }
 

@@ -43,7 +43,7 @@ namespace SuperMetroidRandomizer.IO
         {
             var writer = new StringBuilder();
 
-            writer.AppendLine("Super Metroid Randomizer Log");
+            writer.AppendLine("Super Metroid: Redesign Randomizer Log");
             writer.AppendLine("----------------------------");
             writer.AppendLine(string.Format("Version: {0}", RandomizerVersion.CurrentDisplay));
             writer.AppendLine(string.Format("Creation Date: {0}", DateTime.Now));
@@ -75,13 +75,6 @@ namespace SuperMetroidRandomizer.IO
             writer.AppendLine("Norfair");
             writer.AppendLine("-------");
             foreach (var location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.Norfair))
-            {
-                writer.AppendLine(string.Format("{0}{1}", location.Name.PadRight(47, '.'), GetItemName(location.Item)));
-            }
-            writer.AppendLine();
-            writer.AppendLine("Wrecked Ship");
-            writer.AppendLine("------------");
-            foreach (var location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.WreckedShip))
             {
                 writer.AppendLine(string.Format("{0}{1}", location.Name.PadRight(47, '.'), GetItemName(location.Item)));
             }

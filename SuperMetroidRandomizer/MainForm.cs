@@ -54,70 +54,70 @@ namespace SuperMetroidRandomizer
 
         private void process_Click(object sender, EventArgs e)
         {
-            var randomizerV10 = new RandomizerV10();
+            //var randomizerV10 = new RandomizerV10();
 
-            //default to disabled in case they somehow uncheck all the buttons
-            if (suitlessPossible.Checked)
-                randomizerV10.IsSuitless = Suitless.Possible;
-            else if (suitlessForced.Checked)
-                randomizerV10.IsSuitless = Suitless.Forced;
-            else
-                randomizerV10.IsSuitless = Suitless.Disabled;
+            ////default to disabled in case they somehow uncheck all the buttons
+            //if (suitlessPossible.Checked)
+            //    randomizerV10.IsSuitless = Suitless.Possible;
+            //else if (suitlessForced.Checked)
+            //    randomizerV10.IsSuitless = Suitless.Forced;
+            //else
+            //    randomizerV10.IsSuitless = Suitless.Disabled;
    
-            ClearOutput();
-            var outSeed = randomizerV10.CreateRom(outputFilename.Text, seed.Text);
-            WriteOutput(string.Format("Done!{1}{1}{1}Seed: {0}{1}", outSeed, Environment.NewLine));
-            if (!string.IsNullOrWhiteSpace(seed.Text))
-            {
-                WriteOutput(randomizerV10.RequiresSuitless()
-                                ? string.Format("{0}Warning: Seed requires suitless Maridia!{0}{0}", Environment.NewLine)
-                                : string.Format("{0}Seed does not require suitless Maridia.{0}{0}", Environment.NewLine));
+            //ClearOutput();
+            //var outSeed = randomizerV10.CreateRom(outputFilename.Text, seed.Text);
+            //WriteOutput(string.Format("Done!{1}{1}{1}Seed: {0}{1}", outSeed, Environment.NewLine));
+            //if (!string.IsNullOrWhiteSpace(seed.Text))
+            //{
+            //    WriteOutput(randomizerV10.RequiresSuitless()
+            //                    ? string.Format("{0}Warning: Seed requires suitless Maridia!{0}{0}", Environment.NewLine)
+            //                    : string.Format("{0}Seed does not require suitless Maridia.{0}{0}", Environment.NewLine));
 
-                if (randomizerV10.LikelyImpossible())
-                {
-                    WriteOutput(string.Format("{0}Warning: Seed is likely impossible!{0}{0}", Environment.NewLine));
-                }
-            }
+            //    if (randomizerV10.LikelyImpossible())
+            //    {
+            //        WriteOutput(string.Format("{0}Warning: Seed is likely impossible!{0}{0}", Environment.NewLine));
+            //    }
+            //}
         }
 
         private void WriteOutput(string text)
         {
-            output.Text += text;
+            //output.Text += text;
         }
 
         private void ClearOutput()
         {
-            output.Text = "";
+            //output.Text = "";
         }
 
         private void save_Click(object sender, EventArgs e)
         {
-            var info = new FileInfo(Regex.Replace(outputFilename.Text, "<.*>", ""));
-            var saveFileDialog = new SaveFileDialog { Filter = "All files (*.*)|*.*", FilterIndex = 2, RestoreDirectory = true, InitialDirectory = info.DirectoryName, FileName = info.Name };
+            //var info = new FileInfo(Regex.Replace(outputFilename.Text, "<.*>", ""));
+            //var saveFileDialog = new SaveFileDialog { Filter = "All files (*.*)|*.*", FilterIndex = 2, RestoreDirectory = true, InitialDirectory = info.DirectoryName, FileName = info.Name };
 
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                outputFilename.Text = saveFileDialog.FileName;
-                MessageBox.Show("Remember to hit \"create\" to create the rom.", "Remember to create the rom!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-            }
+            //if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    outputFilename.Text = saveFileDialog.FileName;
+            //    MessageBox.Show("Remember to hit \"create\" to create the rom.", "Remember to create the rom!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            //}
         }
 
         private void outputFilename_TextChanged(object sender, EventArgs e)
         {
-            Settings.Default.OutputFile = outputFilename.Text;
+            //Settings.Default.OutputFile = outputFilename.Text;
             Settings.Default.Save();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            outputFilename.Text = Settings.Default.OutputFile;
+            //outputFilename.Text = Settings.Default.OutputFile;
             filenameV11.Text = Settings.Default.OutputFileV11;
-            createSpoilerLog.Checked = Settings.Default.CreateSpoilerLog;
-            Text = string.Format("Super Metroid Randomizer v{0}", RandomizerVersion.CurrentDisplay);
-            if (Settings.Default.UseCustomSettings)
-                randomizerDifficulty.SelectedItem = "Custom";
-            else
-                randomizerDifficulty.SelectedItem = Settings.Default.RandomizerDifficulty;
+            //createSpoilerLog.Checked = Settings.Default.CreateSpoilerLog;
+            Text = string.Format("Super Metroid: Redesign Randomizer v{0}", RandomizerVersion.CurrentDisplay);
+            //if (Settings.Default.UseCustomSettings)
+            //    randomizerDifficulty.SelectedItem = "Custom";
+            //else
+            //    randomizerDifficulty.SelectedItem = Settings.Default.RandomizerDifficulty;
             RunCheckUpdate();
         }
 
@@ -132,15 +132,15 @@ namespace SuperMetroidRandomizer
             
             var difficulty = GetRandomizerDifficulty();
 
-            if (difficulty == RandomizerDifficulty.None)
-            {
-                return;
-            }
+            //if (difficulty == RandomizerDifficulty.None)
+            //{
+            //    return;
+            //}
 
             CreateRom(difficulty);
 
-            Settings.Default.CreateSpoilerLog = createSpoilerLog.Checked;
-            Settings.Default.RandomizerDifficulty = randomizerDifficulty.SelectedItem.ToString();
+            Settings.Default.CreateSpoilerLog = true;// createSpoilerLog.Checked;
+            Settings.Default.RandomizerDifficulty = "Speedrunner";// randomizerDifficulty.SelectedItem.ToString();
             Settings.Default.Save();
         }
 
@@ -157,7 +157,7 @@ namespace SuperMetroidRandomizer
                 var romLocations = RomLocationsFactory.GetRomLocations(difficulty);
                 RandomizerLog log = null;
 
-                if (createSpoilerLog.Checked)
+                if (true)//(createSpoilerLog.Checked)
                 {
                     log = new RandomizerLog(string.Format(romLocations.SeedFileString, parsedSeed));
                 }
@@ -201,37 +201,38 @@ namespace SuperMetroidRandomizer
         {
             RandomizerDifficulty difficulty;
 
-            if (seedV11.Text.ToUpper().Contains("C"))
+            //if (seedV11.Text.ToUpper().Contains("C"))
+            //{
+            //    randomizerDifficulty.SelectedItem = "Casual";
+            //    Settings.Default.RandomizerDifficulty = "Casual";
+            //    seedV11.Text = seedV11.Text.ToUpper().Replace("C", "");
+            //    difficulty = RandomizerDifficulty.Casual;
+            //    Settings.Default.UseCustomSettings = false;
+            //}
+            //else 
+            if (seedV11.Text.ToUpper().Contains("S"))
             {
-                randomizerDifficulty.SelectedItem = "Casual";
-                Settings.Default.RandomizerDifficulty = "Casual";
-                seedV11.Text = seedV11.Text.ToUpper().Replace("C", "");
-                difficulty = RandomizerDifficulty.Casual;
-                Settings.Default.UseCustomSettings = false;
-            }
-            else if (seedV11.Text.ToUpper().Contains("S"))
-            {
-                randomizerDifficulty.SelectedItem = "Speedrunner";
+                //randomizerDifficulty.SelectedItem = "Speedrunner";
                 Settings.Default.RandomizerDifficulty = "Speedrunner";
                 seedV11.Text = seedV11.Text.ToUpper().Replace("S", "");
                 difficulty = RandomizerDifficulty.Speedrunner;
                 Settings.Default.UseCustomSettings = false;
             }
-            else if (seedV11.Text.ToUpper().Contains("M"))
-            {
-                randomizerDifficulty.SelectedItem = "Masochist";
-                Settings.Default.RandomizerDifficulty = "Masochist";
-                seedV11.Text = seedV11.Text.ToUpper().Replace("M", "");
-                difficulty = RandomizerDifficulty.Masochist;
-                Settings.Default.UseCustomSettings = false;
-            }
-            else if (seedV11.Text.ToUpper().Contains("X"))
-            {
-                randomizerDifficulty.SelectedItem = "Custom";
-                seedV11.Text = seedV11.Text.ToUpper().Replace("X", "");
-                difficulty = GetDifficultyFromString(Settings.Default.CustomRouteGen);
-                Settings.Default.UseCustomSettings = true;
-            }
+            //else if (seedV11.Text.ToUpper().Contains("M"))
+            //{
+            //    randomizerDifficulty.SelectedItem = "Masochist";
+            //    Settings.Default.RandomizerDifficulty = "Masochist";
+            //    seedV11.Text = seedV11.Text.ToUpper().Replace("M", "");
+            //    difficulty = RandomizerDifficulty.Masochist;
+            //    Settings.Default.UseCustomSettings = false;
+            //}
+            //else if (seedV11.Text.ToUpper().Contains("X"))
+            //{
+            //    randomizerDifficulty.SelectedItem = "Custom";
+            //    seedV11.Text = seedV11.Text.ToUpper().Replace("X", "");
+            //    difficulty = GetDifficultyFromString(Settings.Default.CustomRouteGen);
+            //    Settings.Default.UseCustomSettings = true;
+            //}
             //else if (seedV11.Text.ToUpper().Contains("I"))
             //{
             //    randomizerDifficulty.SelectedItem = "Insane";
@@ -240,32 +241,32 @@ namespace SuperMetroidRandomizer
             //}
             else
             {
-                switch (randomizerDifficulty.SelectedItem.ToString())
-                {
-                    case "Casual":
-                        difficulty = RandomizerDifficulty.Casual;
-                        Settings.Default.UseCustomSettings = false;
-                        break;
-                    case "Speedrunner":
+                //switch (randomizerDifficulty.SelectedItem.ToString())
+                //{
+                    //case "Casual":
+                    //    difficulty = RandomizerDifficulty.Casual;
+                    //    Settings.Default.UseCustomSettings = false;
+                    //    break;
+                    //case "Speedrunner":
                         difficulty = RandomizerDifficulty.Speedrunner;
                         Settings.Default.UseCustomSettings = false;
-                        break;
-                    case "Masochist":
-                        difficulty = RandomizerDifficulty.Masochist;
-                        Settings.Default.UseCustomSettings = false;
-                        break;
-                    case "Custom":
-                        difficulty = GetDifficultyFromString(Settings.Default.CustomRouteGen);
-                        Settings.Default.UseCustomSettings = true;
-                        break;
+                        //break;
+                    //case "Masochist":
+                    //    difficulty = RandomizerDifficulty.Masochist;
+                    //    Settings.Default.UseCustomSettings = false;
+                    //    break;
+                    //case "Custom":
+                    //    difficulty = GetDifficultyFromString(Settings.Default.CustomRouteGen);
+                    //    Settings.Default.UseCustomSettings = true;
+                    //    break;
                     //case "Insane":
                     //    difficulty = RandomizerDifficulty.Insane;
                     //    break;
-                    default:
-                        MessageBox.Show("Please select a difficulty.", "Select Difficulty", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        WriteOutputV11("Please select a difficulty.");
-                        return RandomizerDifficulty.None;
-                }
+                    //default:
+                    //    MessageBox.Show("Please select a difficulty.", "Select Difficulty", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //    WriteOutputV11("Please select a difficulty.");
+                    //    return RandomizerDifficulty.Speedrunner;
+                //}
             }
             return difficulty;
         }
@@ -274,37 +275,37 @@ namespace SuperMetroidRandomizer
         {
             switch (str)
             {
-                case "Casual":
-                    return RandomizerDifficulty.Casual;
+                //case "Casual":
+                //    return RandomizerDifficulty.Casual;
                 case "Speedrunner":
                     return RandomizerDifficulty.Speedrunner;
-                case "Masochist":
-                    return RandomizerDifficulty.Masochist;
+                //case "Masochist":
+                //    return RandomizerDifficulty.Masochist;
                 default:
-                    return RandomizerDifficulty.Casual;
+                    return RandomizerDifficulty.Speedrunner;
             }
         }
 
         private void SetSeedBasedOnDifficulty()
         {
-            switch (randomizerDifficulty.SelectedItem.ToString())
-            {
-                case "Casual":
-                    seedV11.Text = string.Format("C{0:0000000}", (new SeedRandom()).Next(10000000));
-                    break;
-                case "Masochist":
-                    seedV11.Text = string.Format("M{0:0000000}", (new SeedRandom()).Next(10000000));
-                    break;
-                case "Insane":
-                    seedV11.Text = string.Format("I{0:0000000}", (new SeedRandom()).Next(10000000));
-                    break;
-                case "Custom":
-                    seedV11.Text = string.Format("X{0:0000000}", (new SeedRandom()).Next(10000000));
-                    break;
-                default:
+            //switch (randomizerDifficulty.SelectedItem.ToString())
+            //{
+            //    case "Casual":
+            //        seedV11.Text = string.Format("C{0:0000000}", (new SeedRandom()).Next(10000000));
+            //        break;
+            //    case "Masochist":
+            //        seedV11.Text = string.Format("M{0:0000000}", (new SeedRandom()).Next(10000000));
+            //        break;
+            //    case "Insane":
+            //        seedV11.Text = string.Format("I{0:0000000}", (new SeedRandom()).Next(10000000));
+            //        break;
+            //    case "Custom":
+            //        seedV11.Text = string.Format("X{0:0000000}", (new SeedRandom()).Next(10000000));
+            //        break;
+            //    default:
                     seedV11.Text = string.Format("S{0:0000000}", (new SeedRandom()).Next(10000000));
-                    break;
-            }
+            //        break;
+            //}
         }
 
         private void ClearOutputV11()
@@ -372,14 +373,14 @@ namespace SuperMetroidRandomizer
             CreateSpoilerLog(difficulty);
         }
 
-        private void CustomV11_Click(object sender, EventArgs e)
-        {
-            Customize customizeDialog = null;
-            customizeDialog = new Customize(randomizerDifficulty.SelectedItem.ToString());
-            customizeDialog.ShowDialog();
+        //private void CustomV11_Click(object sender, EventArgs e)
+        //{
+        //    Customize customizeDialog = null;
+        //    customizeDialog = new Customize(randomizerDifficulty.SelectedItem.ToString());
+        //    customizeDialog.ShowDialog();
 
-            if (Settings.Default.UseCustomSettings)
-                randomizerDifficulty.SelectedItem = "Custom";
-        }
+        //    if (Settings.Default.UseCustomSettings)
+        //        randomizerDifficulty.SelectedItem = "Custom";
+        //}
     }
 }

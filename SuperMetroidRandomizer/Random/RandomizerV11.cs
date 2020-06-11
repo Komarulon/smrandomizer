@@ -9,11 +9,7 @@ namespace SuperMetroidRandomizer.Random
 {
     public enum RandomizerDifficulty
     {
-        None,
-        Casual,
         Speedrunner,
-        Masochist,
-        Insane,
     }
 
     public class RandomizerV11
@@ -57,13 +53,15 @@ namespace SuperMetroidRandomizer.Random
         private void WriteRom(string filename)
         {
             string usedFilename = FileName.Fix(filename, string.Format(romLocations.SeedFileString, seed));
-            var hideLocations = !(romLocations is RomLocationsCasual);
-            if (Settings.Default.UseCustomSettings && !Settings.Default.CustomHiddenItems)
-                hideLocations = false;
+            var hideLocations = false; // !(romLocations is RomLocationsCasual);
+            //if (Settings.Default.UseCustomSettings && !Settings.Default.CustomHiddenItems)
+            //    hideLocations = false;
 
             using (var rom = new FileStream(usedFilename, FileMode.OpenOrCreate))
             {
-                rom.Write(Resources.RomImage, 0, 3145728);
+                //rom.Write(Resources.RomImage, 0, 3145728);
+                rom.Write(Resources.RomImage, 0, 4194304);
+                
 
                 foreach (var location in romLocations.Locations)
                 {
