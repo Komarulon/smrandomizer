@@ -4,7 +4,10 @@ Makes a randomized Super Metroid: Redesign ROM to play.
 
 Latest Release can be found here: https://github.com/Komarulon/smrandomizer/releases/
 
-YOU CAN SOFTLOCK. MAKE LOTS OF SAVES.
+YOU CAN SOFTLOCK. MAKE LOTS OF SAVES. Common softlocks usually involve going to places you can't get out of. For example:
+- Going to Bomb Torizo without Bombs (even though bombs might be there)
+- Going to West Norfair via the Brinstar Glass Tube
+- Checking bomb-jump maze items without bombs or hi-jump (springball), like the item underneath the Brinstar entrance elevator
 
 I recommend using a map! Even better, an item tracker. With EmoTracker: https://emotracker.net/ , you can download the tracker I made here: https://github.com/Komarulon/SuperMetroidRedesignRandomizerEmoTracker 
 
