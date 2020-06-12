@@ -13,7 +13,7 @@
         GrappleBeam,
         GravitySuit,
         SpaceJump,
-        SpringBall,
+        BeamCombo,
         PlasmaBeam,
         IceBeam,
         ScrewAttack,
@@ -51,7 +51,7 @@
                         Chozo = CHOZO_BOMB;
                         break;
                     case ItemType.ChargeBeam:
-                        Normal = CHARGE;
+                        Normal = CHOZO_CHARGE; // Changed from "CHARGE" for testing charge missing...
                         Hidden = HIDDEN_CHARGE;
                         Chozo = CHOZO_CHARGE;
                         break;
@@ -66,7 +66,7 @@
                         Chozo = CHOZO_VARIA;
                         break;
                     case ItemType.HiJumpBoots:
-                        Normal = HIJUMP;
+                        Normal = CHOZO_HIJUMP; // Changed from HIJUMP for testing HiJump needing to be either hidden or in Chozo Ball to work in Redesign
                         Hidden = HIDDEN_HIJUMP;
                         Chozo = CHOZO_HIJUMP;
                         break;
@@ -95,7 +95,7 @@
                         Hidden = HIDDEN_SPACE;
                         Chozo = CHOZO_SPACE;
                         break;
-                    case ItemType.SpringBall:
+                    case ItemType.BeamCombo:
                         Normal = SPRING;
                         Hidden = HIDDEN_SPRING;
                         Chozo = CHOZO_SPRING;

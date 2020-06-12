@@ -68,14 +68,14 @@ namespace SuperMetroidRandomizer.Random
                     rom.Seek(location.Address, SeekOrigin.Begin);
                     var newItem = new byte[2];
 
-                    if (!location.NoHidden && location.Item.Type != ItemType.Nothing && location.Item.Type != ItemType.ChargeBeam && location.ItemStorageType == ItemStorageType.Normal)
-                    {
-                        // hide the item half of the time (to be a jerk)
-                        if (hideLocations && random.Next(2) == 0)
-                        {
-                            location.ItemStorageType = ItemStorageType.Hidden;
-                        }
-                    }
+                    //if (!location.NoHidden && location.Item.Type != ItemType.Nothing && location.Item.Type != ItemType.ChargeBeam && location.ItemStorageType == ItemStorageType.Normal)
+                    //{
+                    //    // hide the item half of the time (to be a jerk)
+                    //    if (hideLocations && random.Next(2) == 0)
+                    //    {
+                    //        location.ItemStorageType = ItemStorageType.Hidden;
+                    //    }
+                    //}
 
                     switch (location.ItemStorageType)
                     {
@@ -99,7 +99,7 @@ namespace SuperMetroidRandomizer.Random
                         rom.Write(StringToByteArray("\x1a"), 0, 1);
                     }
 
-                    if (location.Item.Type == ItemType.ChargeBeam)
+                    if (false && location.Item.Type == ItemType.ChargeBeam)
                     {
                         // we have 4 copies of charge to reduce tedium, give them all the same index
                         rom.Seek(location.Address + 4, SeekOrigin.Begin);
@@ -259,9 +259,9 @@ namespace SuperMetroidRandomizer.Random
         {
             romLocations.ResetLocations();
             haveItems = new List<ItemType>();
-            if (Settings.Default.UseCustomSettings)
-                itemPool = CreateItemPool(random);
-            else
+            //if (Settings.Default.UseCustomSettings)
+            //    itemPool = CreateItemPool(random);
+            //else
                 itemPool = romLocations.GetItemPool(random);
             var unavailableLocations = romLocations.GetUnavailableLocations(itemPool);
 
@@ -275,31 +275,31 @@ namespace SuperMetroidRandomizer.Random
         {
             List<ItemType> pool = new List<ItemType>();
 
-            switch (Settings.Default.CustomRouteGen)
-            {
-                case "Masochist":
+            //switch (Settings.Default.CustomRouteGen)
+            //{
+            //    case "Masochist":
+            //        pool.AddRange(new List<ItemType>
+            //                        {
+            //                            ItemType.MorphingBall, ItemType.Bomb, ItemType.ChargeBeam,
+            //                            ItemType.Spazer, ItemType.VariaSuit, ItemType.HiJumpBoots,
+            //                            ItemType.SpeedBooster, ItemType.WaveBeam, ItemType.GrappleBeam,
+            //                            ItemType.BeamCombo, ItemType.IceBeam, ItemType.XRayScope,
+            //                            ItemType.ReserveTank
+            //                        });
+            //        break;
+            //    default:
                     pool.AddRange(new List<ItemType>
                                     {
                                         ItemType.MorphingBall, ItemType.Bomb, ItemType.ChargeBeam,
                                         ItemType.Spazer, ItemType.VariaSuit, ItemType.HiJumpBoots,
                                         ItemType.SpeedBooster, ItemType.WaveBeam, ItemType.GrappleBeam,
-                                        ItemType.SpringBall, ItemType.IceBeam, ItemType.XRayScope,
-                                        ItemType.ReserveTank
-                                    });
-                    break;
-                default:
-                    pool.AddRange(new List<ItemType>
-                                    {
-                                        ItemType.MorphingBall, ItemType.Bomb, ItemType.ChargeBeam,
-                                        ItemType.Spazer, ItemType.VariaSuit, ItemType.HiJumpBoots,
-                                        ItemType.SpeedBooster, ItemType.WaveBeam, ItemType.GrappleBeam,
-                                        ItemType.GravitySuit, ItemType.SpaceJump, ItemType.SpringBall,
+                                        ItemType.GravitySuit, ItemType.SpaceJump, ItemType.BeamCombo,
                                         ItemType.PlasmaBeam, ItemType.IceBeam, ItemType.ScrewAttack,
                                         ItemType.XRayScope, ItemType.ReserveTank, ItemType.ReserveTank,
                                         ItemType.ReserveTank, ItemType.ReserveTank
                                     });
-                    break;
-            }
+            //        break;
+            //}
 
             decimal addMissiles = Settings.Default.CustomNormalMissiles / 5;
             decimal addMissilesMax = Settings.Default.CustomNormalMissilesMax / 5;

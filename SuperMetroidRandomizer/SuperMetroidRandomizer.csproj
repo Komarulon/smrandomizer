@@ -109,6 +109,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="SM_Redesign_Rando_From_Past.smc" />
+    <None Include="Super Metroid - Redesign_v2.1_FINAL.smc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MenuFileSaveIcon.png" />

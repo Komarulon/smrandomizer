@@ -1503,11 +1503,20 @@ namespace SuperMetroidRandomizer.Rom
                                    Name = "Missile (West Maridia sandfall)",
                                    Address = 0x79020,
                                    CanAccess =
-                                       have =>
-                                       CanAccessMaridia(have)
-                                       && (CanUsePowerBombs(have)
+                                        have =>
+                                        // Needed to get to the location where the item is:
+                                        CanAccessMaridia(have)
+                                        && ((CanUsePowerBombs(have)
                                             || have.Contains(ItemType.GrappleBeam)
-                                            || have.Contains(ItemType.SpaceJump)),
+                                            || have.Contains(ItemType.SpaceJump))) 
+
+                                            // To make the jump across the gap you need either Hi-Jump + Space, or Screw
+                                        && ((have.Contains(ItemType.HiJumpBoots) && have.Contains(ItemType.SpaceJump))
+                                            || have.Contains(ItemType.ScrewAttack)
+
+                                            // ... you could chain it across and shinespark up ... ( ͡° ͜ʖ ͡°)
+                                            // || (have.Contains(ItemType.SpeedBooster) && have.Contains(ItemType.SpaceJump)) 
+                                            )
                                },
                            new Location
                                {
@@ -2415,7 +2424,7 @@ namespace SuperMetroidRandomizer.Rom
                            ItemType.GrappleBeam,
                            ItemType.GravitySuit,
                            ItemType.SpaceJump,
-                           ItemType.SpringBall,
+                           ItemType.BeamCombo,
                            ItemType.PlasmaBeam,
                            ItemType.IceBeam,
                            ItemType.ScrewAttack,

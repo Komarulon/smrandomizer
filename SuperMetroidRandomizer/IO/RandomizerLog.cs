@@ -122,8 +122,8 @@ namespace SuperMetroidRandomizer.IO
                     return "Gravity Suit";
                 case ItemType.SpaceJump:
                     return "Space Jump";
-                case ItemType.SpringBall:
-                    return "Spring Ball";
+                case ItemType.BeamCombo:
+                    return "Beam Combo";
                 case ItemType.PlasmaBeam:
                     return "Plasma Beam";
                 case ItemType.IceBeam:
