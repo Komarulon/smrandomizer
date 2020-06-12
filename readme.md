@@ -4,6 +4,11 @@ Makes a randomized Super Metroid: Redesign ROM to play.
 
 Latest Release can be found here: https://github.com/Komarulon/smrandomizer/releases/
 
+KNOWN ISSUES: 
+- Charge Beam didn't show up in one seed, think I fixed it but need to make a new release first!
+- Hi-Jump placed out in the open gives Wall-Jump, which you already have. Think I fixed it but need to make a new release first!
+- Progression requirements to West Sandfall Missle pack near the Save Point has been adjusted, but need to make a new release first
+
 YOU CAN SOFTLOCK. MAKE LOTS OF SAVES. Common softlocks usually involve going to places you can't get out of. For example:
 - Going to Bomb Torizo without Bombs (even though bombs might be there)
 - Going to West Norfair via the Brinstar Glass Tube
