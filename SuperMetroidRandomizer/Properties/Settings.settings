@@ -2,12 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SuperMetroidRandomizer.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="OutputFile" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SM Random - &lt;seed&gt;.sfc</Value>
-    </Setting>
-    <Setting Name="OutputFileV11" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SM Random - &lt;seed&gt;.sfc</Value>
-    </Setting>
     <Setting Name="ControlsShot" Type="System.String" Scope="User">
       <Value Profile="(Default)">X</Value>
     </Setting>
@@ -73,6 +67,12 @@
     </Setting>
     <Setting Name="CustomEnergyTanksMax" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">14</Value>
+    </Setting>
+    <Setting Name="OutputFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SM_Redesign_&lt;seed&gt;.sfc</Value>
+    </Setting>
+    <Setting Name="OutputFileV11" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SM_Redesign_&lt;seed&gt;.sfc</Value>
     </Setting>
   </Settings>
 </SettingsFile>

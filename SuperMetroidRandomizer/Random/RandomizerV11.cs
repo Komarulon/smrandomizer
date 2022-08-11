@@ -29,7 +29,7 @@ namespace SuperMetroidRandomizer.Random
             this.log = log;
         }
 
-        public string CreateRom(string filename, bool spoilerOnly = false)
+        public string CreateRom(string filename, bool cycleSaves, bool spoilerOnly = false)
         {
             if (filename.Contains("\\") && !Directory.Exists(filename.Substring(0, filename.LastIndexOf('\\'))))
             {
@@ -38,19 +38,21 @@ namespace SuperMetroidRandomizer.Random
 
             GenerateItemList();
             GenerateItemPositions();
-            WriteRom(filename);
+
+            // TODO: why is WriteRom called twice?
+            WriteRom(filename, cycleSaves);
 
             if (spoilerOnly)
             {
                 return log?.GetLogOutput();
             }
 
-            WriteRom(filename);
+            WriteRom(filename, cycleSaves);
 
             return "";
         }
 
-        private void WriteRom(string filename)
+        private void WriteRom(string filename, bool cycleSaves)
         {
             string usedFilename = FileName.Fix(filename, string.Format(romLocations.SeedFileString, seed));
             var hideLocations = false; // !(romLocations is RomLocationsCasual);
@@ -60,7 +62,7 @@ namespace SuperMetroidRandomizer.Random
             using (var rom = new FileStream(usedFilename, FileMode.OpenOrCreate))
             {
                 //rom.Write(Resources.RomImage, 0, 3145728);
-                rom.Write(Resources.RomImage, 0, 4194304);
+                rom.Write(cycleSaves ? Resources.RomImage_SaveRotation : Resources.RomImage_NoSaveRotation, 0, 4194304);
                 
 
                 foreach (var location in romLocations.Locations)

@@ -31,21 +31,23 @@
             this.components = new System.ComponentModel.Container();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.filenameV11 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.createV11 = new System.Windows.Forms.Button();
-            this.seedV11 = new System.Windows.Forms.TextBox();
-            this.outputV11 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.browseV11 = new System.Windows.Forms.Button();
             this.randomSpoiler = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.outputV11 = new System.Windows.Forms.TextBox();
+            this.seedV11 = new System.Windows.Forms.TextBox();
+            this.filenameV11 = new System.Windows.Forms.TextBox();
+            this.createV11 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.Cycle_Saves_Checkbox = new System.Windows.Forms.CheckBox();
+            this.browseV11 = new System.Windows.Forms.Button();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.Cycle_Saves_Checkbox);
             this.tabPage1.Controls.Add(this.randomSpoiler);
             this.tabPage1.Controls.Add(this.browseV11);
             this.tabPage1.Controls.Add(this.label3);
@@ -62,47 +64,25 @@
             this.tabPage1.Text = "Current Randomizer";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // filenameV11
+            // randomSpoiler
             // 
-            this.filenameV11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.filenameV11.Location = new System.Drawing.Point(6, 85);
-            this.filenameV11.Name = "filenameV11";
-            this.filenameV11.Size = new System.Drawing.Size(483, 20);
-            this.filenameV11.TabIndex = 14;
-            this.filenameV11.Text = "SM_Redesign_Random_<seed>.sfc";
-            this.filenameV11.TextChanged += new System.EventHandler(this.filenameV11_TextChanged);
-            this.filenameV11.Leave += new System.EventHandler(this.filename_Leave);
+            this.randomSpoiler.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.randomSpoiler.Location = new System.Drawing.Point(8, 315);
+            this.randomSpoiler.Name = "randomSpoiler";
+            this.randomSpoiler.Size = new System.Drawing.Size(100, 23);
+            this.randomSpoiler.TabIndex = 35;
+            this.randomSpoiler.Text = "Random Spoiler";
+            this.randomSpoiler.UseVisualStyleBackColor = true;
+            this.randomSpoiler.Click += new System.EventHandler(this.randomSpoiler_Click);
             // 
-            // label4
+            // label3
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 69);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(385, 13);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Output Filename (<seed> is replaced with file seed, <date> is replaced with date)" +
-    "";
-            // 
-            // createV11
-            // 
-            this.createV11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.createV11.Location = new System.Drawing.Point(445, 17);
-            this.createV11.Name = "createV11";
-            this.createV11.Size = new System.Drawing.Size(75, 23);
-            this.createV11.TabIndex = 11;
-            this.createV11.Text = "Create";
-            this.createV11.UseVisualStyleBackColor = true;
-            this.createV11.Click += new System.EventHandler(this.createV11_Click);
-            // 
-            // seedV11
-            // 
-            this.seedV11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.seedV11.Location = new System.Drawing.Point(6, 46);
-            this.seedV11.Name = "seedV11";
-            this.seedV11.Size = new System.Drawing.Size(514, 20);
-            this.seedV11.TabIndex = 16;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 30);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(242, 13);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Seed (leave blank to generate new random ROM)";
             // 
             // outputV11
             // 
@@ -119,36 +99,47 @@
             this.outputV11.Size = new System.Drawing.Size(514, 198);
             this.outputV11.TabIndex = 10;
             // 
-            // label3
+            // seedV11
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 30);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(242, 13);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Seed (leave blank to generate new random ROM)";
+            this.seedV11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.seedV11.Location = new System.Drawing.Point(6, 46);
+            this.seedV11.Name = "seedV11";
+            this.seedV11.Size = new System.Drawing.Size(514, 20);
+            this.seedV11.TabIndex = 16;
             // 
-            // browseV11
+            // filenameV11
             // 
-            this.browseV11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.browseV11.Image = global::SuperMetroidRandomizer.Properties.Resources.MenuFileSaveIcon;
-            this.browseV11.Location = new System.Drawing.Point(495, 82);
-            this.browseV11.Name = "browseV11";
-            this.browseV11.Size = new System.Drawing.Size(25, 25);
-            this.browseV11.TabIndex = 15;
-            this.browseV11.UseVisualStyleBackColor = true;
-            this.browseV11.Click += new System.EventHandler(this.browseV11_Click);
+            this.filenameV11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.filenameV11.Location = new System.Drawing.Point(6, 85);
+            this.filenameV11.Name = "filenameV11";
+            this.filenameV11.Size = new System.Drawing.Size(483, 20);
+            this.filenameV11.TabIndex = 14;
+            this.filenameV11.Text = "SM_Redesign_<seed>.sfc";
+            this.filenameV11.TextChanged += new System.EventHandler(this.filenameV11_TextChanged);
+            this.filenameV11.Leave += new System.EventHandler(this.filename_Leave);
             // 
-            // randomSpoiler
+            // createV11
             // 
-            this.randomSpoiler.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.randomSpoiler.Location = new System.Drawing.Point(8, 315);
-            this.randomSpoiler.Name = "randomSpoiler";
-            this.randomSpoiler.Size = new System.Drawing.Size(100, 23);
-            this.randomSpoiler.TabIndex = 35;
-            this.randomSpoiler.Text = "Random Spoiler";
-            this.randomSpoiler.UseVisualStyleBackColor = true;
-            this.randomSpoiler.Click += new System.EventHandler(this.randomSpoiler_Click);
+            this.createV11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.createV11.Location = new System.Drawing.Point(445, 17);
+            this.createV11.Name = "createV11";
+            this.createV11.Size = new System.Drawing.Size(75, 23);
+            this.createV11.TabIndex = 11;
+            this.createV11.Text = "Create";
+            this.createV11.UseVisualStyleBackColor = true;
+            this.createV11.Click += new System.EventHandler(this.createV11_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 69);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(385, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Output Filename (<seed> is replaced with file seed, <date> is replaced with date)" +
+    "";
             // 
             // tabControl1
             // 
@@ -162,6 +153,30 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(534, 373);
             this.tabControl1.TabIndex = 10;
+            // 
+            // Cycle_Saves_Checkbox
+            // 
+            this.Cycle_Saves_Checkbox.AutoSize = true;
+            this.Cycle_Saves_Checkbox.Checked = true;
+            this.Cycle_Saves_Checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Cycle_Saves_Checkbox.Location = new System.Drawing.Point(318, 21);
+            this.Cycle_Saves_Checkbox.Name = "Cycle_Saves_Checkbox";
+            this.Cycle_Saves_Checkbox.Size = new System.Drawing.Size(121, 17);
+            this.Cycle_Saves_Checkbox.TabIndex = 36;
+            this.Cycle_Saves_Checkbox.Text = "Auto Backup Saves";
+            this.Cycle_Saves_Checkbox.UseVisualStyleBackColor = true;
+            this.Cycle_Saves_Checkbox.CheckedChanged += new System.EventHandler(this.Cycle_Saves_Checkbox_CheckedChanged);
+            // 
+            // browseV11
+            // 
+            this.browseV11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.browseV11.Image = global::SuperMetroidRandomizer.Properties.Resources.MenuFileSaveIcon;
+            this.browseV11.Location = new System.Drawing.Point(495, 82);
+            this.browseV11.Name = "browseV11";
+            this.browseV11.Size = new System.Drawing.Size(25, 25);
+            this.browseV11.TabIndex = 15;
+            this.browseV11.UseVisualStyleBackColor = true;
+            this.browseV11.Click += new System.EventHandler(this.browseV11_Click);
             // 
             // MainForm
             // 
@@ -191,6 +206,7 @@
         private System.Windows.Forms.Button createV11;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.CheckBox Cycle_Saves_Checkbox;
     }
 }
 

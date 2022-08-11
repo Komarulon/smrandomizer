@@ -137,14 +137,14 @@ namespace SuperMetroidRandomizer
             //    return;
             //}
 
-            CreateRom(difficulty);
+            this.CreateRom(difficulty, this.Cycle_Saves_Checkbox.Checked);
 
             Settings.Default.CreateSpoilerLog = true;// createSpoilerLog.Checked;
             Settings.Default.RandomizerDifficulty = "Speedrunner";// randomizerDifficulty.SelectedItem.ToString();
             Settings.Default.Save();
         }
 
-        private void CreateRom(RandomizerDifficulty difficulty)
+        private void CreateRom(RandomizerDifficulty difficulty, bool cycleSaves)
         {
             int parsedSeed;
             if (!int.TryParse(seedV11.Text, out parsedSeed))
@@ -164,7 +164,7 @@ namespace SuperMetroidRandomizer
 
                 seedV11.Text = string.Format(romLocations.SeedFileString, parsedSeed);
                 var randomizerV11 = new RandomizerV11(parsedSeed, romLocations, log);
-                randomizerV11.CreateRom(filenameV11.Text);
+                randomizerV11.CreateRom(filenameV11.Text, cycleSaves);
 
                 var outputString = new StringBuilder();
 
@@ -193,7 +193,7 @@ namespace SuperMetroidRandomizer
                 seedV11.Text = string.Format(romPlms.SeedFileString, parsedSeed);
 
                 var randomizer = new RandomizerV11(parsedSeed, romPlms, log);
-                WriteOutputV11(randomizer.CreateRom(filenameV11.Text, true));
+                WriteOutputV11(randomizer.CreateRom(filenameV11.Text, this.Cycle_Saves_Checkbox.Checked, true));
             }
         }
 
@@ -371,6 +371,11 @@ namespace SuperMetroidRandomizer
 
             var difficulty = GetRandomizerDifficulty();
             CreateSpoilerLog(difficulty);
+        }
+
+        private void Cycle_Saves_Checkbox_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
         //private void CustomV11_Click(object sender, EventArgs e)
