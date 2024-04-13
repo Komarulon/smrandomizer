@@ -31,6 +31,8 @@ Redesign Randomizer history:
 - However, Azder uploaded RomLocationsSpeedrunner.cs with all the item locations and logic, so we could recover that, but the rom patches were lost
 - The solution? One of the previous randomized roms would have all the patches! So, this randomizer now uses an old randomized redesign ROM Azder generated
 
-Thank you so much Azder for everything you did for this project!
+Thank you so much Audraxys for everything you did for this project!
 
 Thank you InsaneFirebat and the SMConst community for the save rotation patch!
+
+Thank you Iron Rusty for fixes with the address locations!
