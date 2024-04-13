@@ -211,7 +211,7 @@ namespace SuperMetroidRandomizer.Rom
                                    GravityOkay = false,
                                    Region = Region.Crateria,
                                    Name = "Missile (Crateria awakening)",
-                                   Address = 0x783EE,
+                                   Address = 0x783EE, // ? 0x783b6 ? Appears to be working anyway?
                                    CanAccess =
                                        have =>
                                        CanOpenMissileDoors(have)
@@ -1008,7 +1008,7 @@ namespace SuperMetroidRandomizer.Rom
                                    GravityOkay = true,
                                    Region = Region.Norfair,
                                    Name = "Energy Tank (Grapple)",
-                                   Address = 0x79108,
+                                   Address = 0x7ea1a,
                                    ItemStorageType = ItemStorageType.Chozo,
                                    CanAccess =
                                        have =>
@@ -1061,7 +1061,7 @@ namespace SuperMetroidRandomizer.Rom
                                    GravityOkay = true,
                                    Region = Region.Norfair,
                                    Name = "Super Missile (West Norfair sanctum)",
-                                   Address = 0x7C240,
+                                   Address = 0x7f240,
                                    ItemStorageType = ItemStorageType.Chozo,
                                    CanAccess =
                                        have =>
@@ -1074,7 +1074,7 @@ namespace SuperMetroidRandomizer.Rom
                                    GravityOkay = true,
                                    Region = Region.Norfair,
                                    Name = "Missile (West Norfair sanctum, chozo)",
-                                   Address = 0x7C2EF,
+                                   Address = 0x78376,
                                    ItemStorageType = ItemStorageType.Chozo,
                                    CanAccess =
                                        have =>
@@ -1225,7 +1225,7 @@ namespace SuperMetroidRandomizer.Rom
                                    GravityOkay = true,
                                    Region = Region.Norfair,
                                    Name = "Power Bomb (East Norfair maze)",
-                                   Address = 0x78D24,
+                                   Address = 0x79138,
                                    ItemStorageType = ItemStorageType.Hidden,
                                    CanAccess =
                                        have =>
