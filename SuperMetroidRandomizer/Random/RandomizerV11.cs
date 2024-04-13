@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using SuperMetroidRandomizer.IO;
 using SuperMetroidRandomizer.Net;
 using SuperMetroidRandomizer.Properties;
@@ -55,9 +56,6 @@ namespace SuperMetroidRandomizer.Random
         private void WriteRom(string filename, bool cycleSaves)
         {
             string usedFilename = FileName.Fix(filename, string.Format(romLocations.SeedFileString, seed));
-            var hideLocations = false; // !(romLocations is RomLocationsCasual);
-            //if (Settings.Default.UseCustomSettings && !Settings.Default.CustomHiddenItems)
-            //    hideLocations = false;
 
             using (var rom = new FileStream(usedFilename, FileMode.OpenOrCreate))
             {
@@ -69,15 +67,6 @@ namespace SuperMetroidRandomizer.Random
                 {
                     rom.Seek(location.Address, SeekOrigin.Begin);
                     var newItem = new byte[2];
-
-                    //if (!location.NoHidden && location.Item.Type != ItemType.Nothing && location.Item.Type != ItemType.ChargeBeam && location.ItemStorageType == ItemStorageType.Normal)
-                    //{
-                    //    // hide the item half of the time (to be a jerk)
-                    //    if (hideLocations && random.Next(2) == 0)
-                    //    {
-                    //        location.ItemStorageType = ItemStorageType.Hidden;
-                    //    }
-                    //}
 
                     switch (location.ItemStorageType)
                     {
@@ -219,6 +208,13 @@ namespace SuperMetroidRandomizer.Random
                 // Grab an item from the candidate list if there are any, otherwise, grab a random item
                 if (candidateItemList.Count > 0)
                 {
+                    // Please give bombs early
+                    if (candidateItemList.Contains(ItemType.Bomb))
+                    {
+                        candidateItemList.Add(ItemType.Bomb);
+                        candidateItemList.Add(ItemType.Bomb);
+                    }
+
                     var insertedItem = candidateItemList[random.Next(candidateItemList.Count)];
 
                     itemPool.Remove(insertedItem);
@@ -250,6 +246,7 @@ namespace SuperMetroidRandomizer.Random
             {
                 unavailableLocation.Item = new Item(ItemType.Nothing);
             }
+
 
             if (log != null)
             {
