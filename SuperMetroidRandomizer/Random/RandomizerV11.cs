@@ -30,7 +30,7 @@ namespace SuperMetroidRandomizer.Random
             this.log = log;
         }
 
-        public string CreateRom(string filename, bool cycleSaves, bool spoilerOnly = false)
+        public string CreateRom(string filename, RandomizerOptions randomizerOptions, bool spoilerOnly = false)
         {
             if (filename.Contains("\\") && !Directory.Exists(filename.Substring(0, filename.LastIndexOf('\\'))))
             {
@@ -38,30 +38,34 @@ namespace SuperMetroidRandomizer.Random
             }
 
             GenerateItemList();
-            GenerateItemPositions();
+            GenerateItemPositions(randomizerOptions);
 
             // TODO: why is WriteRom called twice?
-            WriteRom(filename, cycleSaves);
+            WriteRom(filename, randomizerOptions);
 
             if (spoilerOnly)
             {
                 return log?.GetLogOutput();
             }
 
-            WriteRom(filename, cycleSaves);
+            WriteRom(filename, randomizerOptions);
 
             return "";
         }
 
-        private void WriteRom(string filename, bool cycleSaves)
+        private void WriteRom(string filename, RandomizerOptions randomizerOptions)
         {
             string usedFilename = FileName.Fix(filename, string.Format(romLocations.SeedFileString, seed));
-
             using (var rom = new FileStream(usedFilename, FileMode.OpenOrCreate))
             {
-                //rom.Write(Resources.RomImage, 0, 3145728);
-                rom.Write(cycleSaves ? Resources.RomImage_SaveRotation : Resources.RomImage_NoSaveRotation, 0, 4194304);
-                
+                // Overwrite the entire file with the redesign rom:
+                rom.Write(Resources.Super_Metroid___Redesign_v2_1_FINAL, 0, 4194304);
+
+                IpsPatcher.PatchIps(rom, Resources.Redesign_Final_to_Redesign_Rando_From_Past);
+                if (randomizerOptions.cycleSaves)
+                {
+                    IpsPatcher.PatchIps(rom, Resources.Redesign_Rando_From_Past_to_Rando_with_Rotating_Saves);
+                }
 
                 foreach (var location in romLocations.Locations)
                 {
@@ -88,13 +92,6 @@ namespace SuperMetroidRandomizer.Random
                         // give same index as morph ball
                         rom.Seek(location.Address + 4, SeekOrigin.Begin);
                         rom.Write(StringToByteArray("\x1a"), 0, 1);
-                    }
-
-                    if (false && location.Item.Type == ItemType.ChargeBeam)
-                    {
-                        // we have 4 copies of charge to reduce tedium, give them all the same index
-                        rom.Seek(location.Address + 4, SeekOrigin.Begin);
-                        rom.Write(StringToByteArray("\xff"), 0, 1);
                     }
                 }
 
@@ -183,7 +180,7 @@ namespace SuperMetroidRandomizer.Random
             return retVal;
         }
 
-        private void GenerateItemPositions()
+        private void GenerateItemPositions(RandomizerOptions randomizerOptions)
         {
             do
             {
@@ -209,7 +206,7 @@ namespace SuperMetroidRandomizer.Random
                 if (candidateItemList.Count > 0)
                 {
                     // Please give bombs early
-                    if (candidateItemList.Contains(ItemType.Bomb))
+                    if (randomizerOptions.earlierBombs && candidateItemList.Contains(ItemType.Bomb))
                     {
                         candidateItemList.Add(ItemType.Bomb);
                         candidateItemList.Add(ItemType.Bomb);

@@ -73,9 +73,9 @@ namespace SuperMetroidRandomizer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] RomImage_NoSaveRotation {
+        internal static byte[] Redesign_Final_to_Redesign_Rando_From_Past {
             get {
-                object obj = ResourceManager.GetObject("RomImage_NoSaveRotation", resourceCulture);
+                object obj = ResourceManager.GetObject("Redesign_Final_to_Redesign_Rando_From_Past", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -83,9 +83,19 @@ namespace SuperMetroidRandomizer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] RomImage_SaveRotation {
+        internal static byte[] Redesign_Rando_From_Past_to_Rando_with_Rotating_Saves {
             get {
-                object obj = ResourceManager.GetObject("RomImage_SaveRotation", resourceCulture);
+                object obj = ResourceManager.GetObject("Redesign_Rando_From_Past_to_Rando_with_Rotating_Saves", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Super_Metroid___Redesign_v2_1_FINAL {
+            get {
+                object obj = ResourceManager.GetObject("Super_Metroid___Redesign_v2_1_FINAL", resourceCulture);
                 return ((byte[])(obj));
             }
         }

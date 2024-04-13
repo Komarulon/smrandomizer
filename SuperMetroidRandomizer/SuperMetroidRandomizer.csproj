@@ -73,6 +73,7 @@
       <DependentUpon>Controls.cs</DependentUpon>
     </Compile>
     <Compile Include="Rom\IRomLocations.cs" />
+    <Compile Include="Rom\RandomizerOptions.cs" />
     <Compile Include="Rom\Item.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -86,6 +87,7 @@
     <Compile Include="IO\RandomizerLog.cs" />
     <Compile Include="Random\RandomizerV11.cs" />
     <Compile Include="Rom\RomLocationsFactory.cs" />
+    <Compile Include="IO\IpsPatcher.cs" />
     <Compile Include="Rom\RomLocationsSpeedrunner.cs" />
     <Compile Include="Random\SeedRandom.cs" />
     <EmbeddedResource Include="Controls.resx">
@@ -112,16 +114,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="SM_Redesign_Rando_From_Past.smc" />
-    <None Include="Super Metroid - Redesign_v2.1_FINAL.smc" />
+    <None Include="RomResources\Redesign Final to Redesign Rando From Past.ips" />
+    <None Include="RomResources\Redesign Rando From Past to Rando with Rotating Saves.ips" />
+    <None Include="RomResources\SM_Redesign_Rando_From_Past.smc" />
+    <None Include="RomResources\SM_Redesign_Rando_From_Past_Rotating_Saves.smc" />
+    <None Include="RomResources\Super Metroid - Redesign_v2.1_FINAL.smc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MenuFileSaveIcon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Image1.bmp" />
     <Content Include="SMRandomizer.ico" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

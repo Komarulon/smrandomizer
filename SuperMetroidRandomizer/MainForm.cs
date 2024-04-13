@@ -45,13 +45,6 @@ namespace SuperMetroidRandomizer
             Settings.Default.CreateSpoilerLog = Settings.Default.CreateSpoilerLog;
         }
 
-        private void RunCheckUpdate()
-        {
-            checkUpdateThread = new Thread(RandomizerVersion.CheckUpdate);
-            checkUpdateThread.SetApartmentState(ApartmentState.STA);
-            checkUpdateThread.Start();
-        }
-
         private void process_Click(object sender, EventArgs e)
         {
             //var randomizerV10 = new RandomizerV10();
@@ -112,13 +105,7 @@ namespace SuperMetroidRandomizer
         {
             //outputFilename.Text = Settings.Default.OutputFile;
             filenameV11.Text = Settings.Default.OutputFileV11;
-            //createSpoilerLog.Checked = Settings.Default.CreateSpoilerLog;
             Text = string.Format("Super Metroid: Redesign Randomizer v{0}", RandomizerVersion.CurrentDisplay);
-            //if (Settings.Default.UseCustomSettings)
-            //    randomizerDifficulty.SelectedItem = "Custom";
-            //else
-            //    randomizerDifficulty.SelectedItem = Settings.Default.RandomizerDifficulty;
-            RunCheckUpdate();
         }
 
         private void createV11_Click(object sender, EventArgs e)
@@ -132,19 +119,23 @@ namespace SuperMetroidRandomizer
             
             var difficulty = GetRandomizerDifficulty();
 
-            //if (difficulty == RandomizerDifficulty.None)
-            //{
-            //    return;
-            //}
-
-            this.CreateRom(difficulty, this.Cycle_Saves_Checkbox.Checked);
+            this.CreateRom(difficulty);
 
             Settings.Default.CreateSpoilerLog = true;// createSpoilerLog.Checked;
             Settings.Default.RandomizerDifficulty = "Speedrunner";// randomizerDifficulty.SelectedItem.ToString();
             Settings.Default.Save();
         }
 
-        private void CreateRom(RandomizerDifficulty difficulty, bool cycleSaves)
+        private RandomizerOptions GetRandomizerOptions()
+        {
+            return new RandomizerOptions
+            {
+                cycleSaves = this.Cycle_Saves_Checkbox.Checked,
+                earlierBombs = this.MoreBombsCheckbox.Checked,
+            };
+        }
+
+        private void CreateRom(RandomizerDifficulty difficulty)
         {
             int parsedSeed;
             if (!int.TryParse(seedV11.Text, out parsedSeed))
@@ -157,14 +148,14 @@ namespace SuperMetroidRandomizer
                 var romLocations = RomLocationsFactory.GetRomLocations(difficulty);
                 RandomizerLog log = null;
 
-                if (true)//(createSpoilerLog.Checked)
+                if (true)
                 {
                     log = new RandomizerLog(string.Format(romLocations.SeedFileString, parsedSeed));
                 }
 
                 seedV11.Text = string.Format(romLocations.SeedFileString, parsedSeed);
                 var randomizerV11 = new RandomizerV11(parsedSeed, romLocations, log);
-                randomizerV11.CreateRom(filenameV11.Text, cycleSaves);
+                randomizerV11.CreateRom(filenameV11.Text, this.GetRandomizerOptions());
 
                 var outputString = new StringBuilder();
 
@@ -176,7 +167,7 @@ namespace SuperMetroidRandomizer
             }
         }
 
-        private void CreateSpoilerLog(RandomizerDifficulty difficulty)
+        private void CreateSpoilerLog(RandomizerDifficulty difficulty, RandomizerOptions randomizerOptions)
         {
             int parsedSeed;
 
@@ -193,7 +184,7 @@ namespace SuperMetroidRandomizer
                 seedV11.Text = string.Format(romPlms.SeedFileString, parsedSeed);
 
                 var randomizer = new RandomizerV11(parsedSeed, romPlms, log);
-                WriteOutputV11(randomizer.CreateRom(filenameV11.Text, this.Cycle_Saves_Checkbox.Checked, true));
+                WriteOutputV11(randomizer.CreateRom(filenameV11.Text, randomizerOptions, true));
             }
         }
 
@@ -370,7 +361,7 @@ namespace SuperMetroidRandomizer
             ClearOutputV11();
 
             var difficulty = GetRandomizerDifficulty();
-            CreateSpoilerLog(difficulty);
+            CreateSpoilerLog(difficulty, this.GetRandomizerOptions());
         }
 
         private void Cycle_Saves_Checkbox_CheckedChanged(object sender, EventArgs e)

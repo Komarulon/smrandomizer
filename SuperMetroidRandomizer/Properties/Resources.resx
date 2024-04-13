@@ -121,10 +121,13 @@
   <data name="MenuFileSaveIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\MenuFileSaveIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RomImage_NoSaveRotation" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\SM_Redesign_Rando_From_Past.smc;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Redesign_Final_to_Redesign_Rando_From_Past" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\RomResources\Redesign Final to Redesign Rando From Past.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="RomImage_SaveRotation" type="System.Resources.ResXFileRef, System.Windows.Forms">
-	<value>..\SM_Redesign_Rando_From_Past_Rotating_Saves.smc;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Redesign_Rando_From_Past_to_Rando_with_Rotating_Saves" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\RomResources\Redesign Rando From Past to Rando with Rotating Saves.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Super_Metroid___Redesign_v2_1_FINAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\RomResources\Super Metroid - Redesign_v2.1_FINAL.smc;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
