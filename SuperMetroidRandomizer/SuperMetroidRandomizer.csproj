@@ -53,13 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="RomResources\Redesign Unlocked Softlock Prevention.ips" />
+    <None Include="RomResources\Super Metroid Unheadered to Redesign_v2.1_FINAL.ips" />
     <None Include="softlock_prevention_changes.md" />
-    <Compile Include="Customize.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Customize.Designer.cs">
-      <DependentUpon>Customize.cs</DependentUpon>
-    </Compile>
     <Compile Include="IO\FileName.cs" />
     <Compile Include="Net\RandomizerVersion.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -68,12 +63,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Rom\Controller.cs" />
-    <Compile Include="Controls.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls.Designer.cs">
-      <DependentUpon>Controls.cs</DependentUpon>
-    </Compile>
     <Compile Include="Rom\IRomLocations.cs" />
     <Compile Include="Rom\RandomizerOptions.cs" />
     <Compile Include="Rom\Item.cs" />
@@ -92,12 +81,6 @@
     <Compile Include="IO\IpsPatcher.cs" />
     <Compile Include="Rom\RomLocationsSpeedrunner.cs" />
     <Compile Include="Random\SeedRandom.cs" />
-    <EmbeddedResource Include="Controls.resx">
-      <DependentUpon>Controls.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Customize.resx">
-      <DependentUpon>Customize.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,18 +102,16 @@
     <None Include="RomResources\Redesign Final to Levels Unlocked.ips" />
     <None Include="RomResources\Redesign Final to Redesign Rando From Past.ips" />
     <None Include="RomResources\Redesign Rando From Past to Rando with Rotating Saves.ips" />
-    <None Include="RomResources\Redesign Unlocked Final to Redesign Final.ips" />
     <None Include="RomResources\shortmessageboxes_ver3.ips" />
     <None Include="RomResources\SM_Redesign_Rando_From_Past.smc" />
     <None Include="RomResources\SM_Redesign_Rando_From_Past_Rotating_Saves.smc" />
     <None Include="RomResources\Super Metroid - Redesign_v2.1_FINAL.smc" />
-    <None Include="RomResources\Test Changes to Unlocked Rom.ips" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MenuFileSaveIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Image1.bmp" />
+    <Content Include="RomResources\save_rotation.asm" />
     <Content Include="SMRandomizer.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
