@@ -42,6 +42,6 @@ Thank you so much Audraxys for everything you did for this project!
 
 Thank you InsaneFirebat and the SMConst community for the save rotation patch!
 
-Thank you Iron Rusty for fixes with the address locations!
+Thank you ironrusty for fixes with the address locations!
 
 Thank you neen for help and the short message boxes patch!
