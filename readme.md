@@ -4,17 +4,22 @@ Makes a randomized Super Metroid: Redesign ROM to play.
 
 Latest Release can be found here: https://github.com/Komarulon/smrandomizer/releases/
 
-YOU CAN SOFTLOCK. MAKE LOTS OF SAVES. Newly added feature - Auto Backup Saves! The save file will automatically rotate when saving to help prevent hardlocks. 
+I recommend using a map! Even better, an item tracker.
+With EmoTracker: https://emotracker.net/ , you can download the tracker I made here: https://github.com/Komarulon/SuperMetroidRedesignRandomizerEmoTracker 
+
+## Softlocks
+
+**YOU CAN SOFTLOCK. MAKE LOTS OF SAVES.** 
 
 Common softlocks usually involve going to places you can't get out of. For example:
-- Going to Bomb Torizo without Bombs (even though bombs might be there)
+- Going to Bomb Torizo/East Crateria without Bombs (even though bombs might be there)
 - Going to West Norfair via the Brinstar Glass Tube
 - Checking bomb-jump maze items without bombs or hi-jump (springball), like the item underneath the Brinstar entrance elevator
 - Completing Tourian without killing Bomb Torizo
 
-I recommend using a map! Even better, an item tracker. With EmoTracker: https://emotracker.net/ , you can download the tracker I made here: https://github.com/Komarulon/SuperMetroidRedesignRandomizerEmoTracker 
+This randomizer has a checkbox for auto-rotating saves! If checked, when you save, it will save to the next "Samus" slot, (e.g. save in Samus A, Samus B, Samus C, then Samus A again). If enabled, when restarting, **make sure you select the correct file!** 
 
-## Techniques you need to know:
+## Techniques you need to know
 - How to beat Vanilla Redesign
 - Wall-jumping
 - Infinite Bomb Jumping (in Redesign of course)
@@ -22,7 +27,7 @@ I recommend using a map! Even better, an item tracker. With EmoTracker: https://
 - Patience, because Gravity is probably somewhere in some dumb spot you won't like
 
 
-Redesign Randomizer history:
+## Redesign Randomizer history
 - Drewseph made Super Metroid: Redesign - https://drewseph.zophar.net/
 - Dessyreqt made the base Super Metroid Randomizer
 - Audraxys made the randomizer work for Super Metroid: Redesign, with patches for things like "start with wall-jump" some other nice things
