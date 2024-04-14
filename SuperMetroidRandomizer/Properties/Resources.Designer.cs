@@ -73,6 +73,16 @@ namespace SuperMetroidRandomizer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Redesign_Final_to_Levels_Unlocked {
+            get {
+                object obj = ResourceManager.GetObject("Redesign_Final_to_Levels_Unlocked", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Redesign_Final_to_Redesign_Rando_From_Past {
             get {
                 object obj = ResourceManager.GetObject("Redesign_Final_to_Redesign_Rando_From_Past", resourceCulture);
@@ -86,6 +96,36 @@ namespace SuperMetroidRandomizer.Properties {
         internal static byte[] Redesign_Rando_From_Past_to_Rando_with_Rotating_Saves {
             get {
                 object obj = ResourceManager.GetObject("Redesign_Rando_From_Past_to_Rando_with_Rotating_Saves", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Redesign_Unlocked_Final_to_Redesign_Final {
+            get {
+                object obj = ResourceManager.GetObject("Redesign_Unlocked_Final_to_Redesign_Final", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Redesign_Unlocked_Softlock_Prevention {
+            get {
+                object obj = ResourceManager.GetObject("Redesign_Unlocked_Softlock_Prevention", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ShortMessageBoxesVer3 {
+            get {
+                object obj = ResourceManager.GetObject("ShortMessageBoxesVer3", resourceCulture);
                 return ((byte[])(obj));
             }
         }

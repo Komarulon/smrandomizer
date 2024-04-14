@@ -52,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="RomResources\Redesign Unlocked Softlock Prevention.ips" />
+    <None Include="softlock_prevention_changes.md" />
     <Compile Include="Customize.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,11 +116,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="RomResources\Redesign Final to Levels Unlocked.ips" />
     <None Include="RomResources\Redesign Final to Redesign Rando From Past.ips" />
     <None Include="RomResources\Redesign Rando From Past to Rando with Rotating Saves.ips" />
+    <None Include="RomResources\Redesign Unlocked Final to Redesign Final.ips" />
+    <None Include="RomResources\shortmessageboxes_ver3.ips" />
     <None Include="RomResources\SM_Redesign_Rando_From_Past.smc" />
     <None Include="RomResources\SM_Redesign_Rando_From_Past_Rotating_Saves.smc" />
     <None Include="RomResources\Super Metroid - Redesign_v2.1_FINAL.smc" />
+    <None Include="RomResources\Test Changes to Unlocked Rom.ips" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MenuFileSaveIcon.png" />

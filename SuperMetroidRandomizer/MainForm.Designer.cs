@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.MoreBombsCheckbox = new System.Windows.Forms.CheckBox();
             this.Cycle_Saves_Checkbox = new System.Windows.Forms.CheckBox();
             this.randomSpoiler = new System.Windows.Forms.Button();
-            this.browseV11 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.outputV11 = new System.Windows.Forms.TextBox();
             this.seedV11 = new System.Windows.Forms.TextBox();
@@ -41,13 +41,17 @@
             this.createV11 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.MoreBombsCheckbox = new System.Windows.Forms.CheckBox();
+            this.FastFanfaresCheckbox = new System.Windows.Forms.CheckBox();
+            this.browseV11 = new System.Windows.Forms.Button();
+            this.softlockHelpCheckbox = new System.Windows.Forms.CheckBox();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.softlockHelpCheckbox);
+            this.tabPage1.Controls.Add(this.FastFanfaresCheckbox);
             this.tabPage1.Controls.Add(this.MoreBombsCheckbox);
             this.tabPage1.Controls.Add(this.Cycle_Saves_Checkbox);
             this.tabPage1.Controls.Add(this.randomSpoiler);
@@ -66,12 +70,24 @@
             this.tabPage1.Text = "Current Randomizer";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // MoreBombsCheckbox
+            // 
+            this.MoreBombsCheckbox.AutoSize = true;
+            this.MoreBombsCheckbox.Checked = true;
+            this.MoreBombsCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.MoreBombsCheckbox.Location = new System.Drawing.Point(8, 6);
+            this.MoreBombsCheckbox.Name = "MoreBombsCheckbox";
+            this.MoreBombsCheckbox.Size = new System.Drawing.Size(141, 17);
+            this.MoreBombsCheckbox.TabIndex = 37;
+            this.MoreBombsCheckbox.Text = "More Likely Early Bombs";
+            this.MoreBombsCheckbox.UseVisualStyleBackColor = true;
+            // 
             // Cycle_Saves_Checkbox
             // 
             this.Cycle_Saves_Checkbox.AutoSize = true;
             this.Cycle_Saves_Checkbox.Checked = true;
             this.Cycle_Saves_Checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.Cycle_Saves_Checkbox.Location = new System.Drawing.Point(318, 21);
+            this.Cycle_Saves_Checkbox.Location = new System.Drawing.Point(318, 6);
             this.Cycle_Saves_Checkbox.Name = "Cycle_Saves_Checkbox";
             this.Cycle_Saves_Checkbox.Size = new System.Drawing.Size(121, 17);
             this.Cycle_Saves_Checkbox.TabIndex = 36;
@@ -89,17 +105,6 @@
             this.randomSpoiler.Text = "Random Spoiler";
             this.randomSpoiler.UseVisualStyleBackColor = true;
             this.randomSpoiler.Click += new System.EventHandler(this.randomSpoiler_Click);
-            // 
-            // browseV11
-            // 
-            this.browseV11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.browseV11.Image = global::SuperMetroidRandomizer.Properties.Resources.MenuFileSaveIcon;
-            this.browseV11.Location = new System.Drawing.Point(495, 145);
-            this.browseV11.Name = "browseV11";
-            this.browseV11.Size = new System.Drawing.Size(25, 25);
-            this.browseV11.TabIndex = 15;
-            this.browseV11.UseVisualStyleBackColor = true;
-            this.browseV11.Click += new System.EventHandler(this.browseV11_Click);
             // 
             // label3
             // 
@@ -149,7 +154,7 @@
             // createV11
             // 
             this.createV11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.createV11.Location = new System.Drawing.Point(445, 17);
+            this.createV11.Location = new System.Drawing.Point(445, 3);
             this.createV11.Name = "createV11";
             this.createV11.Size = new System.Drawing.Size(75, 23);
             this.createV11.TabIndex = 11;
@@ -180,17 +185,40 @@
             this.tabControl1.Size = new System.Drawing.Size(534, 373);
             this.tabControl1.TabIndex = 10;
             // 
-            // MoreBombsCheckbox
+            // FastFanfaresCheckbox
             // 
-            this.MoreBombsCheckbox.AutoSize = true;
-            this.MoreBombsCheckbox.Checked = true;
-            this.MoreBombsCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MoreBombsCheckbox.Location = new System.Drawing.Point(318, 44);
-            this.MoreBombsCheckbox.Name = "MoreBombsCheckbox";
-            this.MoreBombsCheckbox.Size = new System.Drawing.Size(141, 17);
-            this.MoreBombsCheckbox.TabIndex = 37;
-            this.MoreBombsCheckbox.Text = "More Likely Early Bombs";
-            this.MoreBombsCheckbox.UseVisualStyleBackColor = true;
+            this.FastFanfaresCheckbox.AutoSize = true;
+            this.FastFanfaresCheckbox.Checked = true;
+            this.FastFanfaresCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.FastFanfaresCheckbox.Location = new System.Drawing.Point(318, 29);
+            this.FastFanfaresCheckbox.Name = "FastFanfaresCheckbox";
+            this.FastFanfaresCheckbox.Size = new System.Drawing.Size(90, 17);
+            this.FastFanfaresCheckbox.TabIndex = 38;
+            this.FastFanfaresCheckbox.Text = "Fast Fanfares";
+            this.FastFanfaresCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // browseV11
+            // 
+            this.browseV11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.browseV11.Image = global::SuperMetroidRandomizer.Properties.Resources.MenuFileSaveIcon;
+            this.browseV11.Location = new System.Drawing.Point(495, 145);
+            this.browseV11.Name = "browseV11";
+            this.browseV11.Size = new System.Drawing.Size(25, 25);
+            this.browseV11.TabIndex = 15;
+            this.browseV11.UseVisualStyleBackColor = true;
+            this.browseV11.Click += new System.EventHandler(this.browseV11_Click);
+            // 
+            // softlockHelpCheckbox
+            // 
+            this.softlockHelpCheckbox.AutoSize = true;
+            this.softlockHelpCheckbox.Checked = true;
+            this.softlockHelpCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.softlockHelpCheckbox.Location = new System.Drawing.Point(8, 29);
+            this.softlockHelpCheckbox.Name = "softlockHelpCheckbox";
+            this.softlockHelpCheckbox.Size = new System.Drawing.Size(154, 17);
+            this.softlockHelpCheckbox.TabIndex = 39;
+            this.softlockHelpCheckbox.Text = "Prevent Common Softlocks";
+            this.softlockHelpCheckbox.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -222,6 +250,8 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.CheckBox Cycle_Saves_Checkbox;
         private System.Windows.Forms.CheckBox MoreBombsCheckbox;
+        private System.Windows.Forms.CheckBox FastFanfaresCheckbox;
+        private System.Windows.Forms.CheckBox softlockHelpCheckbox;
     }
 }
 

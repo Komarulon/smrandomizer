@@ -22,8 +22,6 @@ namespace SuperMetroidRandomizer
 
     public partial class MainForm : Form
     {
-        private Thread checkUpdateThread;
-
         public MainForm()
         {
             InitializeSettings();
@@ -132,6 +130,8 @@ namespace SuperMetroidRandomizer
             {
                 cycleSaves = this.Cycle_Saves_Checkbox.Checked,
                 earlierBombs = this.MoreBombsCheckbox.Checked,
+                fastFanfares = this.FastFanfaresCheckbox.Checked,
+                preventCommonSoftlocks = this.softlockHelpCheckbox.Checked,
             };
         }
 

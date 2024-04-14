@@ -98,6 +98,18 @@ namespace SuperMetroidRandomizer.Random
                 WriteSeedInRom(rom);
                 WriteControls(rom);
 
+                if (randomizerOptions.fastFanfares)
+                {
+                    IpsPatcher.PatchIps(rom, Resources.ShortMessageBoxesVer3);
+                }
+
+                if (randomizerOptions.preventCommonSoftlocks)
+                {
+                    IpsPatcher.PatchIps(rom, Resources.Redesign_Final_to_Levels_Unlocked);
+                    IpsPatcher.PatchIps(rom, Resources.Redesign_Unlocked_Softlock_Prevention);
+                    IpsPatcher.PatchIps(rom, Resources.Redesign_Unlocked_Final_to_Redesign_Final);
+                }
+
                 rom.Close();
             }
 
