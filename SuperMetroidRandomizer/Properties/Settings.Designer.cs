@@ -34,5 +34,17 @@ namespace SuperMetroidRandomizer.Properties {
                 this["OutputFileV11"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string InputRom {
+            get {
+                return ((string)(this["InputRom"]));
+            }
+            set {
+                this["InputRom"] = value;
+            }
+        }
     }
 }

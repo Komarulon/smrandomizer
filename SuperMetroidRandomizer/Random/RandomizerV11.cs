@@ -20,11 +20,13 @@ namespace SuperMetroidRandomizer.Random
         private List<ItemType> itemPool;
         private readonly int seed;
         private readonly IRomLocations romLocations;
-        private RandomizerLog log;
+        private readonly RandomizerLog log;
+        private readonly byte[] unheaderedRomBytes;
 
-        public RandomizerV11(int seed, IRomLocations romLocations, RandomizerLog log)
+        public RandomizerV11(byte[] unheaderedRomBytes, int seed, IRomLocations romLocations, RandomizerLog log)
         {
             random = new SeedRandom(seed);
+            this.unheaderedRomBytes = unheaderedRomBytes;
             this.romLocations = romLocations;
             this.seed = seed;
             this.log = log;
@@ -56,10 +58,23 @@ namespace SuperMetroidRandomizer.Random
         private void WriteRom(string filename, RandomizerOptions randomizerOptions)
         {
             string usedFilename = FileName.Fix(filename, string.Format(romLocations.SeedFileString, seed));
+
+
             using (var rom = new FileStream(usedFilename, FileMode.OpenOrCreate))
             {
                 // Overwrite the entire file with the redesign rom:
-                rom.Write(Resources.Super_Metroid___Redesign_v2_1_FINAL, 0, 4194304);
+                //rom.Write(Resources.Super_Metroid___Redesign_v2_1_FINAL, 0, 4194304);
+
+                // 4194304 is the size of the Redesign rom, not the vanilla rom
+                byte[] superMetroidRomCopy = new byte[4194304];
+                this.unheaderedRomBytes.CopyTo(superMetroidRomCopy, 0);
+                using (var unheaderedVanillaRomStream = new MemoryStream(superMetroidRomCopy))
+                {
+                    IpsPatcher.PatchIps(unheaderedVanillaRomStream, Resources.Super_Metroid_Unheadered_to_Redesign_v2_1_FINAL);
+                    unheaderedVanillaRomStream.Seek(0, SeekOrigin.Begin);
+                    rom.Write(unheaderedVanillaRomStream.ToArray(), 0, 4194304);
+                }
+
 
                 IpsPatcher.PatchIps(rom, Resources.Redesign_Final_to_Redesign_Rando_From_Past);
                 if (randomizerOptions.cycleSaves)

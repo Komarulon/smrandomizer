@@ -133,7 +133,7 @@
   <data name="ShortMessageBoxesVer3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\RomResources\shortmessageboxes_ver3.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Super_Metroid___Redesign_v2_1_FINAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\RomResources\Super Metroid - Redesign_v2.1_FINAL.smc;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Super_Metroid_Unheadered_to_Redesign_v2_1_FINAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\RomResources\Super Metroid Unheadered to Redesign_v2.1_FINAL.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

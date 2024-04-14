@@ -113,9 +113,9 @@ namespace SuperMetroidRandomizer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Super_Metroid___Redesign_v2_1_FINAL {
+        internal static byte[] Super_Metroid_Unheadered_to_Redesign_v2_1_FINAL {
             get {
-                object obj = ResourceManager.GetObject("Super_Metroid___Redesign_v2_1_FINAL", resourceCulture);
+                object obj = ResourceManager.GetObject("Super_Metroid_Unheadered_to_Redesign_v2_1_FINAL", resourceCulture);
                 return ((byte[])(obj));
             }
         }

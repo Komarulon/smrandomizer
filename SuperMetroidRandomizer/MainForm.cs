@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Windows.Forms;
 using SuperMetroidRandomizer.IO;
 using SuperMetroidRandomizer.Net;
@@ -26,6 +25,7 @@ namespace SuperMetroidRandomizer
         {
             InitializeSettings();
             InitializeComponent();
+            checkValidInputRom();
         }
 
         private void InitializeSettings()
@@ -85,7 +85,7 @@ namespace SuperMetroidRandomizer
                 }
 
                 seedV11.Text = string.Format(romLocations.SeedFileString, parsedSeed);
-                var randomizerV11 = new RandomizerV11(parsedSeed, romLocations, log);
+                var randomizerV11 = new RandomizerV11(this.getVanillaRomFromSettings(), parsedSeed, romLocations, log);
                 randomizerV11.CreateRom(filenameV11.Text, this.GetRandomizerOptions());
 
                 var outputString = new StringBuilder();
@@ -114,7 +114,7 @@ namespace SuperMetroidRandomizer
 
                 seedV11.Text = string.Format(romPlms.SeedFileString, parsedSeed);
 
-                var randomizer = new RandomizerV11(parsedSeed, romPlms, log);
+                var randomizer = new RandomizerV11(this.getVanillaRomFromSettings(), parsedSeed, romPlms, log);
                 WriteOutputV11(randomizer.CreateRom(filenameV11.Text, randomizerOptions, true));
             }
         }
@@ -199,9 +199,86 @@ namespace SuperMetroidRandomizer
             CreateSpoilerLog(difficulty, this.GetRandomizerOptions());
         }
 
-        private void Cycle_Saves_Checkbox_CheckedChanged(object sender, EventArgs e)
-        {
+        private const string superMetroidUnheaderedFileHashBase64 = "IfPpjfR4DuHGZ7hOV9iGdQ==";
 
+        private void originalRomSelectorButton_Click(object sender, EventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog { Filter = "Super Metroid ROM (*.sfc/*.smc)|*.sfc;*.smc", FilterIndex = 2, RestoreDirectory = true };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (var fileStream = openFileDialog.OpenFile())
+                using (var memoryStream = new MemoryStream())
+                {
+                    fileStream.CopyTo(memoryStream);
+                    var isValidRom = this.checkValidInputRom(memoryStream.ToArray());
+                    if (!isValidRom)
+                    {
+                            MessageBox.Show("Please select an unmodified unheadered Super Metroid ROM file", "Invalid File", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    }
+                }
+            }
+        }
+
+        private bool checkValidInputRom(byte[] inputRomBytes = null)
+        {
+            if (inputRomBytes == null)
+            {
+                var inputRomString = Settings.Default.InputRom;
+                if (inputRomString != null && inputRomString.Trim().Length > 0)
+                {
+                    inputRomBytes = Convert.FromBase64String(inputRomString);
+                }
+            }
+
+
+            var valid = false;
+            if (inputRomBytes == null)
+            {
+                valid = false;
+            }
+            else
+            {
+                using (var md5 = MD5.Create())
+                {
+                    var selectedFileHash = md5.ComputeHash(inputRomBytes);
+                    var hashString = Convert.ToBase64String(selectedFileHash);
+                    valid = hashString == superMetroidUnheaderedFileHashBase64;
+                }
+            }
+
+            if (valid)
+            {
+                Settings.Default.InputRom = Convert.ToBase64String(inputRomBytes);
+                Settings.Default.Save();
+                SelectFileLabel.Text = "✅ Valid Super Metroid ROM Selected ✅";
+                createV11.Enabled = true;
+                createV11.Text = "Create";
+                randomSpoiler.Enabled = true;
+                randomSpoiler.Text = "Random Spoiler";
+            }
+            else
+            {
+                Settings.Default.InputRom = null;
+                Settings.Default.Save();
+                SelectFileLabel.Text = "Select original unheadered Super Metroid ROM";
+                createV11.Enabled = false;
+                createV11.Text = "Invalid ROM";
+                randomSpoiler.Enabled = false;
+                randomSpoiler.Text = "Invalid ROM";
+            }
+
+            return valid;
+        }
+
+        private byte[] getVanillaRomFromSettings()
+        {
+            var inputRomString = Settings.Default.InputRom;
+            if (inputRomString != null && inputRomString.Trim().Length > 0)
+            {
+                return Convert.FromBase64String(inputRomString);
+            }
+            return null;
         }
     }
 }
