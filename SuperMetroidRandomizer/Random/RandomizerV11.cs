@@ -105,9 +105,7 @@ namespace SuperMetroidRandomizer.Random
 
                 if (randomizerOptions.preventCommonSoftlocks)
                 {
-                    IpsPatcher.PatchIps(rom, Resources.Redesign_Final_to_Levels_Unlocked);
                     IpsPatcher.PatchIps(rom, Resources.Redesign_Unlocked_Softlock_Prevention);
-                    IpsPatcher.PatchIps(rom, Resources.Redesign_Unlocked_Final_to_Redesign_Final);
                 }
 
                 rom.Close();
