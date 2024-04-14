@@ -25,11 +25,11 @@ Techniques you need to know:
 
 Redesign Randomizer history:
 - Dessyreqt made the base Super Metroid Randomizer
-- Azder made it work for Super Metroid: Redesign, with patches for things like "start with wall-jump" some other nice things
-- Azder programmed in all the item location addresses, named them, and wrote the logic for each item's pickup
-- Azder's laptop was stolen :( and the randomizer tool was lost
-- However, Azder uploaded RomLocationsSpeedrunner.cs with all the item locations and logic, so we could recover that, but the rom patches were lost
-- The solution? One of the previous randomized roms would have all the patches! So, this randomizer now uses an old randomized redesign ROM Azder generated
+- Audraxys made it work for Super Metroid: Redesign, with patches for things like "start with wall-jump" some other nice things
+- Audraxys programmed in all the item location addresses, named them, and wrote the logic for each item's pickup
+- Audraxys' laptop was stolen :( and the randomizer tool was lost
+- However, Audraxys uploaded RomLocationsSpeedrunner.cs with all the item locations and logic, so we could recover that, but the rom patches were lost
+- The solution? One of the previous randomized roms would have all the patches! So, this randomizer now uses an old randomized redesign ROM Audraxys generated
 
 Thank you so much Audraxys for everything you did for this project!
 
