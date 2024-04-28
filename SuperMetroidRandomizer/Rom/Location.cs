@@ -31,7 +31,11 @@ namespace SuperMetroidRandomizer.Rom
         public bool GravityOkay { get; set; }
         public bool NoHidden { get; set; }
         public int Weight { get; set; }
-        
+        /// <summary>
+        /// Used in Komaru's Naive progressive logic
+        /// </summary>
+        public int Appearances { get; set; }
+
         public Location()
         {
             ItemStorageType = ItemStorageType.Normal;

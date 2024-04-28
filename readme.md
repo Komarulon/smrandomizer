@@ -17,7 +17,6 @@ Common softlocks usually involve going to places you can't get out of. For examp
 - Checking bomb-jump maze items without bombs or hi-jump (springball), like the item underneath the Brinstar entrance elevator
 - Completing Tourian without killing Bomb Torizo
 
-This randomizer has a checkbox for auto-rotating saves! If checked, when you save, it will save to the next "Samus" slot, (e.g. save in Samus A, Samus B, Samus C, then Samus A again). If enabled, when restarting, **make sure you select the correct file!** 
 
 ## Techniques you need to know
 - How to beat Vanilla Redesign
@@ -26,6 +25,13 @@ This randomizer has a checkbox for auto-rotating saves! If checked, when you sav
 - Redesign movement
 - Patience, because Gravity is probably somewhere in some dumb spot you won't like
 
+## Options
+- Randomizer Algorithm - Dessyreqt Original - uses Dessyreqt's algorithm for choosing which items to place where
+- Randomizer Algorithm - Komaru Progressive - uses Komaru's naive algorithm, intended to make it more likely that the item you pick up is needed for the next item. Very opinionated, has lots of hardcoded weighting, but, should work better for Redesign. "Naive" because he didn't do any research, just went and implemented an idea.
+- More Likely Early Bombs - Redesign is very difficult without bombs early on (easy to softlock!). This makes it more likely to get bombs earlier
+- Prevent Common Softlocks - Include a patch that prevents some easy softlocks, such as morph lock tunnels
+- Fast Fanfares - Makes it so picking up items is faster. This does incentivise you to pick up 2-packs of missiles more often, which may not be desired
+- Rotating Saves - When you save, it will save to the next "Samus" slot, (e.g. save in Samus A, Samus B, Samus C, then Samus A again). If enabled, when restarting, **make sure you select the correct file!** 
 
 ## Redesign Randomizer history
 - Drewseph made Super Metroid: Redesign - https://drewseph.zophar.net/
@@ -44,4 +50,4 @@ Thank you InsaneFirebat and the SMConst community for the save rotation patch!
 
 Thank you ironrusty for fixes with the address locations!
 
-Thank you neen for help and the short message boxes patch!
+Thank you neen for help and the short message boxes patch! neen has continued work on the Guardians-As-Items work as well!

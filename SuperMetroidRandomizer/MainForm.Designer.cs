@@ -42,6 +42,8 @@
             this.outputfilenamelabel = new System.Windows.Forms.Label();
             this.originalRomSelectorButton = new System.Windows.Forms.Button();
             this.SelectFileLabel = new System.Windows.Forms.Label();
+            this.randoAlgorithm = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // softlockHelpCheckbox
@@ -49,7 +51,7 @@
             this.softlockHelpCheckbox.AutoSize = true;
             this.softlockHelpCheckbox.Checked = true;
             this.softlockHelpCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.softlockHelpCheckbox.Location = new System.Drawing.Point(12, 35);
+            this.softlockHelpCheckbox.Location = new System.Drawing.Point(14, 58);
             this.softlockHelpCheckbox.Name = "softlockHelpCheckbox";
             this.softlockHelpCheckbox.Size = new System.Drawing.Size(154, 17);
             this.softlockHelpCheckbox.TabIndex = 39;
@@ -61,7 +63,7 @@
             this.FastFanfaresCheckbox.AutoSize = true;
             this.FastFanfaresCheckbox.Checked = true;
             this.FastFanfaresCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.FastFanfaresCheckbox.Location = new System.Drawing.Point(191, 35);
+            this.FastFanfaresCheckbox.Location = new System.Drawing.Point(193, 58);
             this.FastFanfaresCheckbox.Name = "FastFanfaresCheckbox";
             this.FastFanfaresCheckbox.Size = new System.Drawing.Size(90, 17);
             this.FastFanfaresCheckbox.TabIndex = 38;
@@ -73,7 +75,7 @@
             this.MoreBombsCheckbox.AutoSize = true;
             this.MoreBombsCheckbox.Checked = true;
             this.MoreBombsCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MoreBombsCheckbox.Location = new System.Drawing.Point(12, 12);
+            this.MoreBombsCheckbox.Location = new System.Drawing.Point(14, 35);
             this.MoreBombsCheckbox.Name = "MoreBombsCheckbox";
             this.MoreBombsCheckbox.Size = new System.Drawing.Size(141, 17);
             this.MoreBombsCheckbox.TabIndex = 37;
@@ -85,7 +87,7 @@
             this.Cycle_Saves_Checkbox.AutoSize = true;
             this.Cycle_Saves_Checkbox.Checked = true;
             this.Cycle_Saves_Checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.Cycle_Saves_Checkbox.Location = new System.Drawing.Point(191, 12);
+            this.Cycle_Saves_Checkbox.Location = new System.Drawing.Point(193, 35);
             this.Cycle_Saves_Checkbox.Name = "Cycle_Saves_Checkbox";
             this.Cycle_Saves_Checkbox.Size = new System.Drawing.Size(121, 17);
             this.Cycle_Saves_Checkbox.TabIndex = 36;
@@ -95,7 +97,7 @@
             // randomSpoiler
             // 
             this.randomSpoiler.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.randomSpoiler.Location = new System.Drawing.Point(353, 115);
+            this.randomSpoiler.Location = new System.Drawing.Point(353, 122);
             this.randomSpoiler.Name = "randomSpoiler";
             this.randomSpoiler.Size = new System.Drawing.Size(100, 23);
             this.randomSpoiler.TabIndex = 35;
@@ -107,7 +109,7 @@
             // 
             this.browseV11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.browseV11.Image = global::SuperMetroidRandomizer.Properties.Resources.MenuFileSaveIcon;
-            this.browseV11.Location = new System.Drawing.Point(427, 155);
+            this.browseV11.Location = new System.Drawing.Point(427, 163);
             this.browseV11.Name = "browseV11";
             this.browseV11.Size = new System.Drawing.Size(25, 25);
             this.browseV11.TabIndex = 15;
@@ -117,7 +119,7 @@
             // seedlabel
             // 
             this.seedlabel.AutoSize = true;
-            this.seedlabel.Location = new System.Drawing.Point(12, 100);
+            this.seedlabel.Location = new System.Drawing.Point(12, 108);
             this.seedlabel.Name = "seedlabel";
             this.seedlabel.Size = new System.Drawing.Size(242, 13);
             this.seedlabel.TabIndex = 17;
@@ -130,19 +132,19 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.outputV11.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputV11.Location = new System.Drawing.Point(12, 184);
+            this.outputV11.Location = new System.Drawing.Point(12, 194);
             this.outputV11.Multiline = true;
             this.outputV11.Name = "outputV11";
             this.outputV11.ReadOnly = true;
             this.outputV11.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.outputV11.Size = new System.Drawing.Size(437, 138);
+            this.outputV11.Size = new System.Drawing.Size(437, 135);
             this.outputV11.TabIndex = 10;
             // 
             // seedV11
             // 
             this.seedV11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.seedV11.Location = new System.Drawing.Point(12, 116);
+            this.seedV11.Location = new System.Drawing.Point(12, 124);
             this.seedV11.Name = "seedV11";
             this.seedV11.Size = new System.Drawing.Size(335, 20);
             this.seedV11.TabIndex = 16;
@@ -151,7 +153,7 @@
             // 
             this.filenameV11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.filenameV11.Location = new System.Drawing.Point(12, 158);
+            this.filenameV11.Location = new System.Drawing.Point(12, 166);
             this.filenameV11.Name = "filenameV11";
             this.filenameV11.Size = new System.Drawing.Size(410, 20);
             this.filenameV11.TabIndex = 14;
@@ -173,7 +175,7 @@
             // outputfilenamelabel
             // 
             this.outputfilenamelabel.AutoSize = true;
-            this.outputfilenamelabel.Location = new System.Drawing.Point(12, 142);
+            this.outputfilenamelabel.Location = new System.Drawing.Point(12, 150);
             this.outputfilenamelabel.Name = "outputfilenamelabel";
             this.outputfilenamelabel.Size = new System.Drawing.Size(385, 13);
             this.outputfilenamelabel.TabIndex = 13;
@@ -184,7 +186,7 @@
             // 
             this.originalRomSelectorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.originalRomSelectorButton.Image = global::SuperMetroidRandomizer.Properties.Resources.MenuFileSaveIcon;
-            this.originalRomSelectorButton.Location = new System.Drawing.Point(12, 64);
+            this.originalRomSelectorButton.Location = new System.Drawing.Point(12, 72);
             this.originalRomSelectorButton.Name = "originalRomSelectorButton";
             this.originalRomSelectorButton.Size = new System.Drawing.Size(25, 25);
             this.originalRomSelectorButton.TabIndex = 40;
@@ -194,17 +196,38 @@
             // SelectFileLabel
             // 
             this.SelectFileLabel.AutoSize = true;
-            this.SelectFileLabel.Location = new System.Drawing.Point(43, 70);
+            this.SelectFileLabel.Location = new System.Drawing.Point(43, 78);
             this.SelectFileLabel.Name = "SelectFileLabel";
             this.SelectFileLabel.Size = new System.Drawing.Size(230, 13);
             this.SelectFileLabel.TabIndex = 41;
             this.SelectFileLabel.Text = "Select original unheadered Super Metroid ROM";
             // 
+            // randoAlgorithm
+            // 
+            this.randoAlgorithm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.randoAlgorithm.FormattingEnabled = true;
+            this.randoAlgorithm.Location = new System.Drawing.Point(129, 6);
+            this.randoAlgorithm.Name = "randoAlgorithm";
+            this.randoAlgorithm.Size = new System.Drawing.Size(154, 21);
+            this.randoAlgorithm.TabIndex = 42;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(112, 13);
+            this.label1.TabIndex = 43;
+            this.label1.Text = "Randomizer Algorithm:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(461, 334);
+            this.ClientSize = new System.Drawing.Size(461, 341);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.randoAlgorithm);
             this.Controls.Add(this.SelectFileLabel);
             this.Controls.Add(this.originalRomSelectorButton);
             this.Controls.Add(this.outputfilenamelabel);
@@ -242,6 +265,8 @@
         private System.Windows.Forms.CheckBox softlockHelpCheckbox;
         private System.Windows.Forms.Button originalRomSelectorButton;
         private System.Windows.Forms.Label SelectFileLabel;
+        private System.Windows.Forms.ComboBox randoAlgorithm;
+        private System.Windows.Forms.Label label1;
     }
 }
 

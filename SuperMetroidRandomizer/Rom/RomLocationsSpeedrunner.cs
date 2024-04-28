@@ -832,7 +832,10 @@ namespace SuperMetroidRandomizer.Rom
                                    CanAccess =
                                        have =>
                                        have.Contains(ItemType.SuperMissile)
-                                       && CanOpenMissileDoors(have),
+                                       && CanOpenMissileDoors(have) &&
+                                       (RomLocationsSpeedrunner.randomizerOptions.randomizerAlgorithm == RandomizerAlgorithm.KomaruProgressive ?
+                                       (CanUsePowerBombs(have) || CanDbj(have))
+                                       : true),
                                },
                            new Location
                                {
@@ -2308,8 +2311,11 @@ namespace SuperMetroidRandomizer.Rom
 
         private static bool CanOpenMissileDoors(List<ItemType> have)
         {
+            // You might think to change this to allow supers, allowing supers as the second item. However, this breaks the awakening!
+            // However, PBs are fine here
             return have.Contains(ItemType.Missile)
                 && have.Contains(ItemType.MorphingBall);
+            
         }
 
         private static bool CanDestroyBombWalls(List<ItemType> have)
@@ -2341,19 +2347,32 @@ namespace SuperMetroidRandomizer.Rom
                 && CanUsePowerBombs(have);
         }
 
-        public RomLocationsSpeedrunner()
+        // god this is awful but
+        private static RandomizerOptions randomizerOptions;
+        public RomLocationsSpeedrunner(RandomizerOptions randomizerOptions)
         {
             ResetLocations();
+            RomLocationsSpeedrunner.randomizerOptions = randomizerOptions;
         }
 
         public List<Location> GetAvailableLocations(List<ItemType> haveItems)
         {
+
+            return (from Location location in Locations where (location.Item == null) && location.CanAccess(haveItems) select location).ToList();
+
+        }
+
+        public List<Location> GetAvailableLocationsWeighted(List<ItemType> haveItems)
+        {
+            // get all locations that are available
             var retVal = (from Location location in Locations where (location.Item == null) && location.CanAccess(haveItems) select location).ToList();
+            // The current weight is the highest weight of items we know about, plus one
             var currentWeight = (from item in retVal orderby item.Weight descending select item.Weight).First() + 1;
 
-            foreach (var item in retVal.Where(item => item.Weight == 0))
+            // Each locationwithout a weight gets the highest weight
+            foreach (var location in retVal.Where(location => location.Weight == 0))
             {
-                item.Weight = currentWeight;
+                location.Weight = currentWeight;
             }
 
             var addedItems = new List<List<Location>>();
@@ -2370,19 +2389,41 @@ namespace SuperMetroidRandomizer.Rom
             return retVal;
         }
 
+        public List<Location> GetAvailableLocationsWeightedByAppearance(List<ItemType> haveItems, int currentIteration)
+        {
+            // get all locations that are available
+            var baseAvailableLocations = (from Location location in Locations where (location.Item == null) && location.CanAccess(haveItems) select location).ToList();
+
+            var retVal = baseAvailableLocations.ToList();
+
+            foreach (var location in baseAvailableLocations)
+            {
+                for (var i = 0; i < (currentIteration - location.Appearances); i++)
+                {
+                    retVal.Add(location);
+                }
+            }
+
+            return retVal;
+        }
+
+
+
         public List<Location> GetUnavailableLocations(List<ItemType> haveItems)
         {
             return (from Location location in Locations where location.Item == null && !location.CanAccess(haveItems) select location).ToList();
         }
 
-        public void TryInsertCandidateItem(List<Location> currentLocations, List<ItemType> candidateItemList, ItemType candidateItem)
+        public bool TryInsertCandidateItem(List<Location> currentLocations, List<ItemType> candidateItemList, ItemType candidateItem)
         {
             // only try gravity if gravity is okay in this spot
             // only insert multiples of an item into the candidate list if we aren't looking at the morph ball slot.
             if (!(candidateItem == ItemType.GravitySuit && !currentLocations.Any(x => x.GravityOkay)) && (currentLocations.All(x => x.Name != "Morphing Ball") || !candidateItemList.Contains(candidateItem)))
             {
                 candidateItemList.Add(candidateItem);
+                return true;
             }
+            return false;
         }
 
         public int GetInsertedLocation(List<Location> currentLocations, ItemType insertedItem, SeedRandom random)

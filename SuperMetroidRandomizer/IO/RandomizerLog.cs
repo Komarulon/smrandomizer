@@ -12,18 +12,27 @@ namespace SuperMetroidRandomizer.IO
     {
         private readonly List<Location> generatedItems;
         private readonly List<Location> orderedItems;
+        private readonly List<Location> majorItems;
         private readonly string seed;
+        private readonly RandomizerOptions randomizerOptions;
 
-        public RandomizerLog(string seed)
+        public RandomizerLog(RandomizerOptions randomizerOptions, string seed)
         {
             generatedItems = new List<Location>();
             orderedItems = new List<Location>();
+            majorItems = new List<Location>();
             this.seed = seed;
+            this.randomizerOptions = randomizerOptions;
         }
 
         public void AddOrderedItem(Location location)
         {
             orderedItems.Add(location);
+        }
+
+        public void AddMajorItem(Location location)
+        {
+            majorItems.Add(location);
         }
 
         public void AddGeneratedItems(List<Location> locations)
@@ -45,13 +54,21 @@ namespace SuperMetroidRandomizer.IO
 
             writer.AppendLine("Super Metroid: Redesign Randomizer Log");
             writer.AppendLine("----------------------------");
-            writer.AppendLine(string.Format("Version: {0}", RandomizerVersion.CurrentDisplay));
+            writer.AppendLine(string.Format("Version: {0} - {1}", RandomizerVersion.CurrentDisplay, RandomizerAlgorithmUtil.RandomizerAlgorithmToString(this.randomizerOptions.randomizerAlgorithm)));
             writer.AppendLine(string.Format("Creation Date: {0}", DateTime.Now));
             writer.AppendLine(string.Format("Seed: {0}", seed));
             writer.AppendLine();
             writer.AppendLine("Generated Item Order");
             writer.AppendLine("--------------------");
             foreach (var location in orderedItems)
+            {
+                writer.AppendLine(string.Format("{0}{1}", location.Name.PadRight(47, '.'), GetItemName(location.Item)));
+            }
+
+            writer.AppendLine();
+            writer.AppendLine("Major Items");
+            writer.AppendLine("--------------------");
+            foreach (var location in majorItems)
             {
                 writer.AppendLine(string.Format("{0}{1}", location.Name.PadRight(47, '.'), GetItemName(location.Item)));
             }

@@ -4,9 +4,9 @@ namespace SuperMetroidRandomizer.Rom
 {
     public class RomLocationsFactory
     {
-        public static IRomLocations GetRomLocations(RandomizerDifficulty difficulty)
+        public static IRomLocations GetRomLocations(RandomizerOptions randomizerOptions)
         {
-            return new RomLocationsSpeedrunner();
+            return new RomLocationsSpeedrunner(randomizerOptions);
         }
     }
 }

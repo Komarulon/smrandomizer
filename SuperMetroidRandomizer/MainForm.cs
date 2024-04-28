@@ -25,6 +25,11 @@ namespace SuperMetroidRandomizer
         {
             InitializeSettings();
             InitializeComponent();
+            // shouldn't go here but w/e
+            this.randoAlgorithm.Items.Clear();
+            this.randoAlgorithm.Items.Add(RandomizerAlgorithmUtil.RandomizerAlgorithmToString(RandomizerAlgorithm.DessysOriginal));
+            this.randoAlgorithm.Items.Add(RandomizerAlgorithmUtil.RandomizerAlgorithmToString(RandomizerAlgorithm.KomaruProgressive));
+            this.randoAlgorithm.SelectedIndex = 1;
             checkValidInputRom();
         }
 
@@ -63,6 +68,7 @@ namespace SuperMetroidRandomizer
                 earlierBombs = this.MoreBombsCheckbox.Checked,
                 fastFanfares = this.FastFanfaresCheckbox.Checked,
                 preventCommonSoftlocks = this.softlockHelpCheckbox.Checked,
+                randomizerAlgorithm = RandomizerAlgorithmUtil.StringToRandomizerAlgorithm((string)this.randoAlgorithm.SelectedItem),
             };
         }
 
@@ -76,12 +82,12 @@ namespace SuperMetroidRandomizer
             }
             else
             {
-                var romLocations = RomLocationsFactory.GetRomLocations(difficulty);
+                var romLocations = RomLocationsFactory.GetRomLocations(this.GetRandomizerOptions());
                 RandomizerLog log = null;
 
                 if (true)
                 {
-                    log = new RandomizerLog(string.Format(romLocations.SeedFileString, parsedSeed));
+                    log = new RandomizerLog(this.GetRandomizerOptions(), string.Format(romLocations.SeedFileString, parsedSeed));
                 }
 
                 seedV11.Text = string.Format(romLocations.SeedFileString, parsedSeed);
@@ -109,8 +115,8 @@ namespace SuperMetroidRandomizer
             }
             else
             {
-                var romPlms = RomLocationsFactory.GetRomLocations(difficulty);
-                RandomizerLog log = new RandomizerLog(string.Format(romPlms.SeedFileString, parsedSeed));
+                var romPlms = RomLocationsFactory.GetRomLocations(this.GetRandomizerOptions());
+                RandomizerLog log = new RandomizerLog(this.GetRandomizerOptions(), string.Format(romPlms.SeedFileString, parsedSeed));
 
                 seedV11.Text = string.Format(romPlms.SeedFileString, parsedSeed);
 
@@ -279,6 +285,11 @@ namespace SuperMetroidRandomizer
                 return Convert.FromBase64String(inputRomString);
             }
             return null;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

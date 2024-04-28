@@ -32,6 +32,7 @@
         public string Normal { get; set; }
         public string Hidden { get; set; }
         public string Chozo { get; set; }
+        public bool isMajor { get; private set; }
         public ItemType Type
         {
             get { return type; }
@@ -44,111 +45,133 @@
                         Normal = MORPH;
                         Hidden = HIDDEN_MORPH;
                         Chozo = CHOZO_MORPH;
+                        this.isMajor = true;
                         break;
                     case ItemType.Bomb:
                         Normal = BOMB;
                         Hidden = HIDDEN_BOMB;
                         Chozo = CHOZO_BOMB;
+                        this.isMajor = true;
                         break;
                     case ItemType.ChargeBeam:
                         Normal = CHOZO_CHARGE; // Changed from "CHARGE" for testing charge missing...
                         Hidden = HIDDEN_CHARGE;
                         Chozo = CHOZO_CHARGE;
+                        this.isMajor = true;
                         break;
                     case ItemType.Spazer:
                         Normal = SPAZER;
                         Hidden = HIDDEN_SPAZER;
                         Chozo = CHOZO_SPAZER;
+                        this.isMajor = true;
                         break;
                     case ItemType.VariaSuit:
                         Normal = VARIA;
                         Hidden = HIDDEN_VARIA;
                         Chozo = CHOZO_VARIA;
+                        this.isMajor = true;
                         break;
                     case ItemType.HiJumpBoots:
                         Normal = CHOZO_HIJUMP; // Changed from HIJUMP for testing HiJump needing to be either hidden or in Chozo Ball to work in Redesign
                         Hidden = HIDDEN_HIJUMP;
                         Chozo = CHOZO_HIJUMP;
+                        this.isMajor = true;
                         break;
                     case ItemType.SpeedBooster:
                         Normal = SPEED;
                         Hidden = HIDDEN_SPEED;
                         Chozo = CHOZO_SPEED;
+                        this.isMajor = true;
                         break;
                     case ItemType.WaveBeam:
                         Normal = WAVE;
                         Hidden = HIDDEN_WAVE;
                         Chozo = CHOZO_WAVE;
+                        this.isMajor = true;
                         break;
                     case ItemType.GrappleBeam:
                         Normal = GRAPPLE;
                         Hidden = HIDDEN_GRAPPLE;
                         Chozo = CHOZO_GRAPPLE;
+                        this.isMajor = true;
                         break;
                     case ItemType.GravitySuit:
                         Normal = GRAVITY;
                         Hidden = HIDDEN_GRAVITY;
                         Chozo = CHOZO_GRAVITY;
+                        this.isMajor = true;
                         break;
                     case ItemType.SpaceJump:
                         Normal = SPACE;
                         Hidden = HIDDEN_SPACE;
                         Chozo = CHOZO_SPACE;
+                        this.isMajor = true;
                         break;
                     case ItemType.BeamCombo:
                         Normal = SPRING;
                         Hidden = HIDDEN_SPRING;
                         Chozo = CHOZO_SPRING;
+                        this.isMajor = true;
                         break;
                     case ItemType.PlasmaBeam:
                         Normal = PLASMA;
                         Hidden = HIDDEN_PLASMA;
                         Chozo = CHOZO_PLASMA;
+                        this.isMajor = true;
                         break;
                     case ItemType.IceBeam:
                         Normal = ICE;
                         Hidden = HIDDEN_ICE;
                         Chozo = CHOZO_ICE;
+                        this.isMajor = true;
                         break;
                     case ItemType.ScrewAttack:
                         Normal = SCREW;
                         Hidden = HIDDEN_SCREW;
                         Chozo = CHOZO_SCREW;
+                        this.isMajor = true;
                         break;
                     case ItemType.XRayScope:
                         Normal = XRAY;
                         Hidden = HIDDEN_XRAY;
                         Chozo = CHOZO_XRAY;
+                        this.isMajor = true;
                         break;
                     case ItemType.Missile:
                         Normal = MISSILE;
                         Hidden = HIDDEN_MISSILE;
                         Chozo = CHOZO_MISSILE;
+                        this.isMajor = false;
                         break;
                     case ItemType.SuperMissile:
                         Normal = SUPER;
                         Hidden = HIDDEN_SUPER;
                         Chozo = CHOZO_SUPER;
+                        this.isMajor = false;
                         break;
                     case ItemType.PowerBomb:
                         Normal = PB;
                         Hidden = HIDDEN_PB;
                         Chozo = CHOZO_PB;
+                        this.isMajor = false;
                         break;
                     case ItemType.EnergyTank:
                         Normal = ETANK;
                         Hidden = HIDDEN_ETANK;
                         Chozo = CHOZO_ETANK;
+                        this.isMajor = false;
                         break;
                     case ItemType.ReserveTank:
                         Normal = RESERVE;
                         Hidden = HIDDEN_RESERVE;
                         Chozo = CHOZO_RESERVE;
+                        this.isMajor = false;
                         break;
                     case ItemType.Nothing:
                         Normal = MISSILE;
                         Hidden = HIDDEN_MISSILE;
                         Chozo = CHOZO_MISSILE;
+                        this.isMajor = false;
                         break;
                 }
 

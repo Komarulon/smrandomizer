@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using SuperMetroidRandomizer.IO;
@@ -152,11 +153,24 @@ namespace SuperMetroidRandomizer.Random
             return retVal;
         }
 
+        // TODO: use an interface
         private void GenerateItemPositions(RandomizerOptions randomizerOptions)
+        {
+            if (randomizerOptions.randomizerAlgorithm == RandomizerAlgorithm.DessysOriginal)
+            {
+                this.GenerateItemPositionsDessyreqt(randomizerOptions);
+            }
+            else if (randomizerOptions.randomizerAlgorithm == RandomizerAlgorithm.KomaruProgressive)
+            {
+                this.GenerateItemPositionsKomaru(randomizerOptions);
+            }
+        }
+
+        private void GenerateItemPositionsDessyreqt(RandomizerOptions randomizerOptions)
         {
             do
             {
-                var currentLocations = romLocations.GetAvailableLocations(haveItems);
+                var currentLocations = romLocations.GetAvailableLocationsWeighted(haveItems);
                 var candidateItemList = new List<ItemType>();
 
                 // Generate candidate item list
@@ -164,7 +178,7 @@ namespace SuperMetroidRandomizer.Random
                 {
                     haveItems.Add(candidateItem);
 
-                    var newLocations = romLocations.GetAvailableLocations(haveItems);
+                    var newLocations = romLocations.GetAvailableLocationsWeighted(haveItems);
 
                     if (newLocations.Count > currentLocations.Count)
                     {
@@ -196,6 +210,10 @@ namespace SuperMetroidRandomizer.Random
                     {
                         log.AddOrderedItem(currentLocations[insertedLocation]);
                     }
+                    if (log != null && currentLocations[insertedLocation].Item.isMajor)
+                    {
+                        log.AddMajorItem(currentLocations[insertedLocation]);
+                    }
                 }
                 else
                 {
@@ -206,6 +224,10 @@ namespace SuperMetroidRandomizer.Random
 
                     int insertedLocation = romLocations.GetInsertedLocation(currentLocations, insertedItem, random);
                     currentLocations[insertedLocation].Item = new Item(insertedItem);
+                    if (log != null && currentLocations[insertedLocation].Item.isMajor)
+                    {
+                        log.AddMajorItem(currentLocations[insertedLocation]);
+                    }
                 }
             } while (itemPool.Count > 0);
 
@@ -222,6 +244,166 @@ namespace SuperMetroidRandomizer.Random
                 log.AddGeneratedItems(romLocations.Locations);
             }
         }
+
+        private void GenerateItemPositionsKomaru(RandomizerOptions randomizerOptions)
+        {
+            // If getting an item would open more locations, weight it higher
+            // Lower means more weight - every N locations unlocked by this item, weight it higher. Set to 0 to ignore
+            var majorOpensMoreLocationsWeight = 0.1;
+            var minorOpensMoreLocationsWeight = 0.5;
+
+            var norfairLocationMultiplier = 2;
+            var maridiaLocationMultiplier = 2;
+
+            // If this location hasn't been seen by the previous item, weight it higher
+            // Higher means more weight
+            var futureItemWeight = 10;
+
+            romLocations.Locations.ForEach((x) => x.Appearances = 0);
+            var iteration = 0;
+            do
+            {
+                var currentAvailableLocations = romLocations.GetAvailableLocations(haveItems);
+                // List of items we can potentially give out this iteration
+                var candidateItemList = new List<ItemType>();
+
+                // Generate candidate item list
+                foreach (var candidateItem in itemPool)
+                {
+                    // Skip items we already added (minor optimization)
+                    if (candidateItemList.Any((x) => x == candidateItem))
+                    {
+                        continue;
+                    }
+
+                    // go through each item, and add it
+                    haveItems.Add(candidateItem);
+
+                    // Get all the locations available assuming we have this item
+                    var newLocations = romLocations.GetAvailableLocations(haveItems);
+
+                    // If this item would give us new locations, add it to the candidateItemList, based on the number of new locations
+                    if (newLocations.Count > currentAvailableLocations.Count)
+                    {
+                        // adds to candidateItemList
+                        var added = romLocations.TryInsertCandidateItem(currentAvailableLocations, candidateItemList, candidateItem);
+                        // If it was added, then weight it based on how many items it unlocks:
+                        if (added)
+                        {
+                            var isMajor = new Item(candidateItem).isMajor;
+                            var weightFactor = isMajor ? majorOpensMoreLocationsWeight : minorOpensMoreLocationsWeight;
+                            if (weightFactor > 0)
+                            {
+                                var weight = Math.Log(newLocations.Count - currentAvailableLocations.Count);
+                                while (weight > 0)
+                                {
+                                    candidateItemList.Add(candidateItem);
+                                    weight -= weightFactor;
+                                }
+                            }
+                        }
+                    }
+
+                    // Remove the candidate from the list, we don't _actually_ have it right now
+                    haveItems.Remove(candidateItem);
+                }
+
+
+                var currentAvailableWeightedLocations = romLocations.GetAvailableLocationsWeightedByAppearance(haveItems, iteration * futureItemWeight);
+
+                // Grab an item from the candidate list if there are any, otherwise, grab a random item
+                if (candidateItemList.Count > 0)
+                {
+                    // Please give bombs early
+                    if (randomizerOptions.earlierBombs && candidateItemList.Contains(ItemType.Bomb))
+                    {
+                        var bombWeight = candidateItemList.Count / 3.0;
+                        if (bombWeight < 1)
+                        {
+                            bombWeight = 5;
+                        }
+
+                        for (var i = 0; i < bombWeight; i++)
+                        {
+                            candidateItemList.Add(ItemType.Bomb);
+                        }
+
+                    }
+
+                    // Randomly pick the item we're placing
+                    var insertedItem = candidateItemList[random.Next(candidateItemList.Count)];
+
+                    itemPool.Remove(insertedItem);
+                    haveItems.Add(insertedItem);
+
+                    var ct = currentAvailableWeightedLocations.Count;
+                    for (var i = 0; i < ct; i++)
+                    {
+                        var location = currentAvailableWeightedLocations[i];
+                        var multiplier = 0;
+                        if (location.Region == Region.Norfair)
+                        {
+                            multiplier = norfairLocationMultiplier;
+                        }
+                        else if (location.Region == Region.Maridia)
+                        {
+                            multiplier = maridiaLocationMultiplier;
+                        }
+
+                        while (multiplier-- > 0)
+                        {
+                            currentAvailableWeightedLocations.Add(location);
+                        }
+                    }
+
+                    int insertedLocation = romLocations.GetInsertedLocation(currentAvailableWeightedLocations, insertedItem, random);
+                    currentAvailableWeightedLocations[insertedLocation].Item = new Item(insertedItem);
+
+                    if (log != null)
+                    {
+                        log.AddOrderedItem(currentAvailableWeightedLocations[insertedLocation]);
+                    }
+
+                    if (log != null && currentAvailableWeightedLocations[insertedLocation].Item.isMajor)
+                    {
+                        log.AddMajorItem(currentAvailableWeightedLocations[insertedLocation]);
+                    }
+                }
+                else
+                {
+                    ItemType insertedItem = romLocations.GetInsertedItem(currentAvailableWeightedLocations, itemPool, random);
+
+                    itemPool.Remove(insertedItem);
+                    haveItems.Add(insertedItem);
+
+                    int insertedLocation = romLocations.GetInsertedLocation(currentAvailableWeightedLocations, insertedItem, random);
+                    currentAvailableWeightedLocations[insertedLocation].Item = new Item(insertedItem);
+
+                    if (log != null && currentAvailableWeightedLocations[insertedLocation].Item.isMajor)
+                    {
+                        log.AddMajorItem(currentAvailableWeightedLocations[insertedLocation]);
+                    }
+                }
+
+                currentAvailableLocations.ForEach((x) => x.Appearances += futureItemWeight);
+
+                iteration += 1;
+            } while (itemPool.Count > 0);
+
+            var unavailableLocations = romLocations.GetUnavailableLocations(haveItems);
+
+            foreach (var unavailableLocation in unavailableLocations)
+            {
+                unavailableLocation.Item = new Item(ItemType.Nothing);
+            }
+
+
+            if (log != null)
+            {
+                log.AddGeneratedItems(romLocations.Locations);
+            }
+        }
+
 
         private void GenerateItemList()
         {
